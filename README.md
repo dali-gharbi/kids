@@ -20,6 +20,10 @@ Path to php executable =>  C:\wamp64\bin\php\php7.0.10\php.exe
 </br>
 Path to Symfony => C:\wamp64\www\kids\bin\console
 </br>
-http://localhost/kids/web/app_dev.php
+ensuite 
+app => config parameters.yml => database_name: kids
+</br>
+url : http://localhost/kids/web/app_dev.php
+
 
 A Symfony project created on March 22, 2018, 6:28 pm.
