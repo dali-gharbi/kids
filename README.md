@@ -2,6 +2,8 @@
 .checkout
 =========
 
+<b>fist of all don't forget to do composer install </b>
+</br>
 Go to File => settings => Tools => Command line support 
 </br>
 ++ Add composer for Global 
