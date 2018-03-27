@@ -26,7 +26,9 @@ ensuite
 app => config parameters.yml => database_name: kids
 </br>
 url : http://localhost/kids/web/app_dev.php
-
+</br>
+pour remplir les données de la base : </br>
+s doctrine:fixtures:load</br>
 </br>
 routing fosuuserbundle 
 </br>
