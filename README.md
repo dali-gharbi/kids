@@ -30,6 +30,8 @@ url : http://localhost/kids/web/app_dev.php
 pour remplir les données de la base : </br>
 s doctrine:fixtures:load</br>
 </br>
+run this to update web resource. </br>
+s assets:install target --symlink </br>
 routing fosuuserbundle 
 </br>
  fos_user_security_login             GET|POST   ANY      ANY    /login    </br>                         
