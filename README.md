@@ -32,22 +32,30 @@ s doctrine:fixtures:load</br>
 </br>
 run this to update web resource. </br>
 s assets:install target --symlink </br>
-routing fosuuserbundle 
+to enable debugger : 
 </br>
- fos_user_security_login             GET|POST   ANY      ANY    /login    </br>                         
-  fos_user_security_check             POST       ANY      ANY    /login_check      </br>                 
-  fos_user_security_logout            GET|POST   ANY      ANY    /logout          </br>                  
-  fos_user_profile_show               GET        ANY      ANY    /profile/             </br>             
-  fos_user_profile_edit               GET|POST   ANY      ANY    /profile/edit             </br>         
-  fos_user_registration_register      GET|POST   ANY      ANY    /register/                    </br>     
-  fos_user_registration_check_email   GET        ANY      ANY    /register/check-email            </br>  
-  fos_user_registration_confirm       GET        ANY      ANY    /register/confirm/{token}          </br>
-  fos_user_registration_confirmed     GET        ANY      ANY    /register/confirmed               </br> 
-  fos_user_resetting_request          GET        ANY      ANY    /resetting/request                 </br>
-  fos_user_resetting_send_email       POST       ANY      ANY    /resetting/send-email              </br>
-  fos_user_resetting_check_email      GET        ANY      ANY    /resetting/check-email             </br>
-  fos_user_resetting_reset            GET|POST   ANY      ANY    /resetting/reset/{token}           </br>
-  fos_user_change_password            GET|POST   ANY      ANY    /profile/change-password      </br>
+output_buffering=Off </br>
+</br> download xdebug dll 
+</br> add this to phpini </br>
 
+[XDebug] </br>
+zend_extension = "c:\xampp\php\ext\php_xdebug-2.6.0-7.2-vc15.dll" </br>
+xdebug.remote_autostart = 1 </br>
+xdebug.profiler_append = 0 </br>
+xdebug.profiler_enable = 0 </br>
+xdebug.profiler_enable_trigger = 0 </br>
+xdebug.profiler_output_dir = "c:\xampp\tmp" </br>
+;xdebug.profiler_output_name = "cachegrind.out.%t-%s" </br>
+xdebug.remote_enable = 1 </br>
+xdebug.remote_handler = "dbgp" </br>
+xdebug.remote_host = "127.0.0.1" </br>
+xdebug.remote_log = "c:\xampp\tmp\xdebug.txt" </br>
+xdebug.remote_port = 9000 </br>
+xdebug.trace_output_dir = "c:\xampp\tmp" </br>
+;36000 = 10h </br>
+xdebug.remote_cookie_expire_time = 36000 </br>
 
+</br> </br>
+listen for debug on phpstorm and start debugging using debug links on website. </br>
+https://www.jetbrains.com/phpstorm/marklets/ 
 A Symfony project created on March 22, 2018, 6:28 pm.
