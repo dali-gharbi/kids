@@ -264,7 +264,7 @@ desired effect
                  alt="User Image">
         </div>
         <div class="pull-left info">
-            <p>{% block username %} Alexander Pierce {% endblock %}</p>
+            <p>{% block username %} {{app.user.username}} {% endblock %}</p>
             <!-- Status -->
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
