@@ -1,2 +1,17 @@
 
 {% extends '@Admin/base.html.twig' %}
+
+    {% block pageHeader %}
+        dashboard
+    {% endblock %}
+        {% block pageDescription %}
+            Optional description
+        {% endblock %}
+    {% block pageBreadcrumb %}
+        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+        <li class="active">Here</li>
+    {% endblock %}
+    {% block link1State %} active {% endblock %}
+
+    {% block body %}
+    {% endblock %}
