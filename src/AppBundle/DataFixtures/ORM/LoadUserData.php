@@ -5,13 +5,13 @@ use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-//use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class LoadUserData
     extends AbstractFixture
-    implements ORMFixtureInterface, ContainerAwareInterface
+    implements ORMFixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
 
     /**
