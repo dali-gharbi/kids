@@ -51,6 +51,12 @@ class Pediatrician
      */
     private $rating;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Speciality", inversedBy="pediatricians")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $speciality;
+
 
     /**
      * Get id
@@ -156,6 +162,29 @@ class Pediatrician
     public function getRating()
     {
         return $this->rating;
+    }
+
+    /**
+     * Get speciality
+     *
+     * @return Speciality
+     */
+    public function getSpeciality(): Speciality
+    {
+        return $this->speciality;
+    }
+
+    /**
+     * Set speciality
+     *
+     * @param Speciality $speciality
+     *
+     * @return Speciality
+     */
+    public function setSpeciality(Speciality $speciality)
+    {
+        $this->speciality = $speciality;
+        return $this->speciality;
     }
 }
 
