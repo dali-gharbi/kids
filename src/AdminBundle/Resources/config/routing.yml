@@ -1,3 +1,7 @@
 admin_homepage:
     path:     /
     defaults: { _controller: AdminBundle:Default:index }
+
+app_speciality:
+    resource: "@AdminBundle/Controller/SpecialityController.php"
+    type:     annotation
