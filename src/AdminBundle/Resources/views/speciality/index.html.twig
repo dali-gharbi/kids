@@ -1,19 +1,23 @@
 {% extends '@Admin/base.html.twig' %}
-
 {% block title %}
     {{ parent() }} - speciality index
 {% endblock %}
 
+    {% block pageHeader %}
+        <a href="{{ path('speciality') }}">Speciality</a>
+    {% endblock %}
+        {% block pageDescription %}
+            liste des spécialitées des pédiatres
+        {% endblock %}
+    {% block pageBreadcrumb %}
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">Liste des pediatres</li>
+    {% endblock %}
+    {% block link5State %} active {% endblock %}
+    {% block link6State %} active {% endblock %}
+
 {% block body %}
-
-
     <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h2><a href="{{ path('speciality') }}">Speciality</a></h2>
-            </div>
-        </div>
-
         <!-- FILTERING -->
         <div class="col-md-12">
             <div id="filters" class="collapse">
