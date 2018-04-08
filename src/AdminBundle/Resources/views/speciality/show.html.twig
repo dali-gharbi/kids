@@ -3,15 +3,25 @@
     {{ parent() }} - speciality
 {% endblock %}
 
+    {% block pageHeader %}
+        View speciality <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+    {% endblock %}
+        {% block pageDescription %}
+
+        {% endblock %}
+    {% block pageBreadcrumb %}
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="">Liste des Specialité</li>
+        <li class="active">affichage de spécialité</li>
+    {% endblock %}
+    {% block link5State %} active {% endblock %}
+    {% block link6State %} active {% endblock %}
+
+
 {% block body %}
 
-    <div id="top" class="row">
-        <div class="page-header">
-            <h2>View speciality <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></h2>
-        </div>
-    </div>
-
-    <div class="row">
+    <div class="col-md-12">
+        <div class="row">
         <div class="col-md-6">
             <p><strong>Id</strong></p>
             <p>
@@ -60,6 +70,7 @@
                 Delete
             </button>
         </form>
+    </div>
     </div>
 
 

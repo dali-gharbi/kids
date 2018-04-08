@@ -1,18 +1,23 @@
 {% extends '@Admin/base.html.twig' %}
-
 {% block title %}
     {{ parent() }} - New speciality
 {% endblock %}
 
+    {% block pageHeader %}
+        <a href="{{ path('speciality') }}">New Speciality</a>
+    {% endblock %}
+        {% block pageDescription %}
+            liste des spécialitées des pédiatres
+        {% endblock %}
+    {% block pageBreadcrumb %}
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="">Liste des Specialité</li>
+        <li class="active">Ajout de spécialité</li>
+    {% endblock %}
+    {% block link5State %} active {% endblock %}
+    {% block link6State %} active {% endblock %}
+
 {% block body %}
-
-    <div id="top" class="row">
-        <div class="page-header">
-            <h2>New speciality <span class="glyphicon glyphicon-file" aria-hidden="true"></span></h2>
-        </div>
-    </div>
-
-
 
     <div class="row">
         <div class="row">
@@ -27,30 +32,31 @@
             </div>
         </div>
 
+        <div class="col-md-6 col-md-offset-3">
 
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <p>
-            <button type="submit" name="submit" value="save" class="btn btn-primary">
-                Save <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
-            </button>
-            <button type="submit" name="submit" value="saveAndAdd" class="btn btn-info">
-                Save and Add <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            </button>
-        </p>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <p>
+                <button type="submit" name="submit" value="save" class="btn btn-primary">
+                    Save <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+                </button>
+                <button type="submit" name="submit" value="saveAndAdd" class="btn btn-info">
+                    Save and Add <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
+            </p>
 
 
-        {{ form_end(form) }}
+            {{ form_end(form) }}
 
-        <hr/>
+            <hr/>
 
-        <div class="form-group">
-            <a class="btn btn-default" href="{{ path('speciality') }}">
-                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-                Back to list
-            </a>
+            <div class="form-group">
+                <a class="btn btn-default" href="{{ path('speciality') }}">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                    Back to list
+                </a>
+            </div>
         </div>
-
     </div>
 
 
