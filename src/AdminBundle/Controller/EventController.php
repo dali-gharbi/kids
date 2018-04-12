@@ -1,6 +1,6 @@
 <?php
 
-namespace FrontBundle\Controller;
+namespace AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,7 +22,7 @@ class EventController extends Controller
     /**
      * Lists all Event entities.
      *
-     * @Route("/", name="front_event")
+     * @Route("/", name="event")
      * @Method("GET")
      */
     public function indexAction(Request $request)
@@ -35,7 +35,7 @@ class EventController extends Controller
         
         $totalOfRecordsString = $this->getTotalOfRecordsString($queryBuilder, $request);
 
-        return $this->render('@Front/event/index.html.twig', array(
+        return $this->render('@Admin/event/index.html.twig', array(
             'events' => $events,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
@@ -51,7 +51,7 @@ class EventController extends Controller
     */
     protected function filter($queryBuilder, $request)
     {
-        $filterForm = $this->createForm('FrontBundle\Form\EventFilterType');
+        $filterForm = $this->createForm('AdminBundle\Form\EventFilterType');
 
         // Bind values from the request
         $filterForm->handleRequest($request);
@@ -137,7 +137,7 @@ class EventController extends Controller
     {
     
         $event = new Event();
-        $form   = $this->createForm('FrontBundle\Form\EventType', $event);
+        $form   = $this->createForm('AdminBundle\Form\EventType', $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -151,7 +151,7 @@ class EventController extends Controller
             $nextAction=  $request->get('submit') == 'save' ? 'event' : 'event_new';
             return $this->redirectToRoute($nextAction);
         }
-        return $this->render('@Front/event/new.html.twig', array(
+        return $this->render('@Admin/event/new.html.twig', array(
             'event' => $event,
             'form'   => $form->createView(),
         ));
@@ -167,7 +167,7 @@ class EventController extends Controller
     public function showAction(Event $event)
     {
         $deleteForm = $this->createDeleteForm($event);
-        return $this->render('@Front/event/show.html.twig', array(
+        return $this->render('@Admin/event/show.html.twig', array(
             'event' => $event,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -184,7 +184,7 @@ class EventController extends Controller
     public function editAction(Request $request, Event $event)
     {
         $deleteForm = $this->createDeleteForm($event);
-        $editForm = $this->createForm('FrontBundle\Form\EventType', $event);
+        $editForm = $this->createForm('AdminBundle\Form\EventType', $event);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -195,7 +195,7 @@ class EventController extends Controller
             $this->get('session')->getFlashBag()->add('success', 'Edited Successfully!');
             return $this->redirectToRoute('event_edit', array('id' => $event->getId()));
         }
-        return $this->render('@Front/event/edit.html.twig', array(
+        return $this->render('@Admin/event/edit.html.twig', array(
             'event' => $event,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -279,7 +279,7 @@ class EventController extends Controller
         if ($action == "delete") {
             try {
                 $em = $this->getDoctrine()->getManager();
-                $repository = $em->getRepository('FrontBundle:Event');
+                $repository = $em->getRepository('AdminBundle:Event');
 
                 foreach ($ids as $id) {
                     $event = $repository->find($id);

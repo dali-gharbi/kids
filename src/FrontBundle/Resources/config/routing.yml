@@ -2,6 +2,6 @@ front_homepage:
     path:     /
     defaults: { _controller: FrontBundle:Default:index }
 
-front_Event:
+front_event:
     resource: "@FrontBundle/Controller/EventController.php"
     type:     annotation
