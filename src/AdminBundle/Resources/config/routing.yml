@@ -5,7 +5,3 @@ admin_homepage:
 app_speciality:
     resource: "@AdminBundle/Controller/SpecialityController.php"
     type:     annotation
-
-admin_event:
-    resource: "@AdminBundle/Controller/EventController.php"
-    type:     annotation

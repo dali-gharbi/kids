@@ -134,27 +134,27 @@ class Event
     }
 
     /**
-     * Set Establishment
+     * Set etablishment
      *
-     * @param string $Establishment
+     * @param string $etablishment
      *
      * @return Event
      */
-    public function setEstablishment($Establishment)
+    public function setEtablishment($etablishment)
     {
-        $this->Establishment = $Establishment;
+        $this->etablishment = $etablishment;
 
         return $this;
     }
 
     /**
-     * Get Establishment
+     * Get etablishment
      *
      * @return string
      */
-    public function getEstablishment()
+    public function getEtablishment()
     {
-        return $this->Establishment;
+        return $this->etablishment;
     }
 }
 
