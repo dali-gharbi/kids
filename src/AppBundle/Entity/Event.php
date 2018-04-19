@@ -50,6 +50,21 @@ class Event
      */
     private $Establishment;
 
+    /**
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="Events")
+     */
+    private $Users;
+
+
+    public function __construct() {
+        $this->Users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function AddUser(User $User)
+    {
+        $this->Users[] = $User;
+    }
 
     /**
      * Get id
@@ -142,7 +157,7 @@ class Event
      */
     public function setEtablishment($etablishment)
     {
-        $this->etablishment = $etablishment;
+        $this->Establishment = $etablishment;
 
         return $this;
     }
@@ -154,7 +169,7 @@ class Event
      */
     public function getEtablishment()
     {
-        return $this->etablishment;
+        return $this->Establishment;
     }
 }
 
