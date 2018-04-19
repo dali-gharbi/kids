@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Pediatrician
 {
+
+    public function __construct()
+    {
+        $this->speciality = new Speciality();
+    }
     /**
      * @var int
      *
@@ -36,12 +41,19 @@ class Pediatrician
      */
     private $Address;
 
+    ///**
+    // * @var string
+    // *
+   //  * @ORM\Column(name="Photo", type="string", length=255)
+   //  */
+   // private $photo;
+
     /**
-     * @var string
+     * @var float
      *
-     * @ORM\Column(name="Photo", type="string", length=255)
+     * @ORM\Column(name="Price", type="float")
      */
-    private $photo;
+    private $price;
 
     /**
      * Inversed side
@@ -116,28 +128,52 @@ class Pediatrician
         return $this->Address;
     }
 
+   // /**
+   //  * Set photo
+   //  *
+   //  * @param string $photo
+   //  *
+   //  * @return Pediatrician
+   //  */
+   // public function setPhoto($photo)
+   // {
+   //     $this->photo = $photo;
+//
+  //      return $this;
+  //  }
+
+  //  /**
+  //   * Get photo
+  //   *
+  //   * @return string
+  //   */
+  //  public function getPhoto()
+  //  {
+  //      return $this->photo;
+  //  }
+
     /**
-     * Set photo
+     * Set price
      *
-     * @param string $photo
+     * @param float $price
      *
      * @return Pediatrician
      */
-    public function setPhoto($photo)
+    public function setPrice($price)
     {
-        $this->photo = $photo;
+        $this->price = $price;
 
         return $this;
     }
 
     /**
-     * Get photo
+     * Get price
      *
-     * @return string
+     * @return float
      */
-    public function getPhoto()
+    public function getPrice()
     {
-        return $this->photo;
+        return $this->price;
     }
 
     /**

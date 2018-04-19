@@ -5,3 +5,7 @@ admin_homepage:
 app_speciality:
     resource: "@AdminBundle/Controller/SpecialityController.php"
     type:     annotation
+
+app_pediatrician:
+    resource: "@AdminBundle/Controller/PediatricianController.php"
+    type:     annotation
