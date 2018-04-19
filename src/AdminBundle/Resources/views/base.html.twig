@@ -297,8 +297,8 @@ desired effect
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="{% block link3State %}  {% endblock %}"><a href="">Liste des pédiatres</a></li>
-                            <li class="{% block link4State %}  {% endblock %}"><a href="">Ajouter un pédiatre</a></li>
+                            <li class="{% block link3State %}  {% endblock %}"><a href="{{ path('pediatre') }}">Liste des pédiatres</a></li>
+                            <li class="{% block link4State %}  {% endblock %}"><a href="{{ path('pediatre_new') }}">Ajouter un pédiatre</a></li>
                             <li class="{% block link5State %}  {% endblock %}"><a href="{{ path('speciality') }}">Liste
                                     des spécialitées</a></li>
                         </ul>

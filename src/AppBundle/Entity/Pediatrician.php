@@ -63,7 +63,7 @@ class Pediatrician
     private $rating;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Speciality", inversedBy="pediatricians")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Speciality", inversedBy="pediatricians", cascade="persist")
      * @ORM\JoinColumn(nullable=true, referencedColumnName="id", onDelete="CASCADE")
      */
     private $speciality;
