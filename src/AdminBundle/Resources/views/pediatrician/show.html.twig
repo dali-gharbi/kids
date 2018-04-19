@@ -1,17 +1,21 @@
 {% extends '@Admin/base.html.twig' %}
-
 {% block title %}
-{{ parent() }} - pediatrician
+    {{ parent() }} - pediatrician
 {% endblock %}
 
+    {% block pageHeader %}
+        <a href="{{ path('pediatre_show', { 'id': pediatrician.id }) }}">Pediatrician</a>
+    {% endblock %}
+    {% block pageBreadcrumb %}
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="">Liste des pediatre</li>
+        <li class="active">info pediatre</li>
+    {% endblock %}
+    {% block link5State %} active {% endblock %}
+    {% block link6State %} active {% endblock %}
+
 {% block body %}
-
-<div id="top" class="row">
-    <div class="page-header">
-        <h2>View pediatrician <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </h2>
-    </div>
-</div>
-
+<div class="col-md-12">
 <div class="row">
     <div class="col-md-6">
         <p><strong>Id</strong></p>
@@ -59,6 +63,7 @@
             Delete
         </button>
     </form>
+</div>
 </div>
 
 

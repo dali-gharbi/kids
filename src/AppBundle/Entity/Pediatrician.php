@@ -15,7 +15,6 @@ class Pediatrician
 
     public function __construct()
     {
-        $this->speciality = new Speciality();
     }
     /**
      * @var int
@@ -205,7 +204,7 @@ class Pediatrician
      *
      * @return Speciality
      */
-    public function getSpeciality(): Speciality
+    public function getSpeciality()
     {
         return $this->speciality;
     }
