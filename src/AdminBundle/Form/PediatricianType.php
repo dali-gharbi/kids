@@ -20,7 +20,7 @@ class PediatricianType extends AbstractType
             ->add('price')
             ->add('Address', EntityType::class, array(
                 'class' => 'AppBundle\Entity\Address',
-                'choice_label' => 'longitude',
+                'choice_label' => 'rue',
                 'placeholder' => 'Please choose',
                 'empty_data' => null,
                 'required' => false

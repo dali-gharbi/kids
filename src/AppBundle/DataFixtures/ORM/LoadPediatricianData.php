@@ -2,6 +2,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Address;
 use AppBundle\Entity\Pediatrician;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
@@ -28,7 +29,12 @@ class LoadPediatricianData
     {
         $pediatre = new Pediatrician();
         $pediatre->setName('Dr Mostfa Hamdi');
-        $pediatre->setAddress('(AIR) assists in the diagnosis and management of children with known or suspected immune deficiencies, rheumatologic (related to muscles, tendons, or joints) or autoimmune (immune response of the body against substance normally present in the body) diseases, and allergic diseases (allergies, asthma, skin allergy, and sinusitis). AIR includes the allergy program, the rheumatology program, and inpatient immunology consultation service. The division also coordinates the pediatric asthma program in collaboration with the Division of Pediatric Pulmonology.');
+        $adrs = new Address();
+        $adrs->setRue('test');
+        $adrs->setLongitude('36.8179854');
+        $adrs->setLatitude('10.1946025');
+        $adrs->setGovernorate('tunis');
+        $pediatre->setAddress($adrs);
         $pediatre->setPrice(40);
 
         //$pediatre->setRating(1);

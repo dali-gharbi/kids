@@ -43,7 +43,7 @@ class Pediatrician
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Address", inversedBy="pediatricians", cascade="persist")
      * @ORM\JoinColumn(nullable=true, referencedColumnName="id", onDelete="CASCADE")
      */
-    private $Address;
+    private $address;
 
     ///**
     // * @var string
@@ -111,7 +111,7 @@ class Pediatrician
     /**
      * Set address
      *
-     * @param string $Address
+     * @param Address $Address
      *
      * @return Pediatrician
      */
@@ -125,11 +125,11 @@ class Pediatrician
     /**
      * Get Address
      *
-     * @return string
+     * @return Address
      */
     public function getAddress()
     {
-        return $this->Address;
+        return $this->address;
     }
 
    // /**
