@@ -32,11 +32,16 @@ class Pediatrician
      */
     private $name;
 
+   // /**
+   //  * Inversed side
+   //  * @var int
+   //  * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Address", inversedBy="Address")
+   //  * @ORM\JoinColumn(name="Address", referencedColumnName="id", onDelete="CASCADE")
+   //  */
+
     /**
-     * Inversed side
-     * @var int
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Address", inversedBy="Address")
-     * @ORM\JoinColumn(name="Address", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Address", inversedBy="pediatricians", cascade="persist")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="id", onDelete="CASCADE")
      */
     private $Address;
 

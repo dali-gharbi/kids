@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * Address
@@ -12,6 +14,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Address
 {
+
+    public function __construct()
+    {
+        $this->pediatricians = new ArrayCollection();
+    }
+
     /**
      * @var int
      *
@@ -48,14 +56,12 @@ class Address
      * @ORM\Column(name="Governorate", type="string", length=255)
      */
 
-    /**
-     * Inversed side
-     * @var int
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Governorate", inversedBy="governorate")
-     * @ORM\JoinColumn(name="governorate", referencedColumnName="id", onDelete="CASCADE")
-     */
     private $governorate;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Pediatrician", mappedBy="speciality")
+     */
+    private $pediatricians;
 
     /**
      * Get id
@@ -161,6 +167,14 @@ class Address
     public function getGovernorate()
     {
         return $this->governorate;
+    }
+
+    /**
+     * @return Collection|Pediatrician[]
+     */
+    public function getPediatricians()
+    {
+        return $this->pediatricians;
     }
 }
 
