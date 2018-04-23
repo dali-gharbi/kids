@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AncaRebeca\FullCalendarBundle\Model\FullCalendarEvent;
 
 /**
  * Event
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="event")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EventRepository")
  */
-class Event
+class Event extends FullCalendarEvent
 {
     /**
      * @var int
@@ -52,7 +53,7 @@ class Event
 
     /**
      * Many Groups have Many Users.
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="Events")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="Event")
      */
     private $Users;
 
@@ -155,7 +156,7 @@ class Event
      *
      * @return Event
      */
-    public function setEtablishment($etablishment)
+    public function setEstablishment($etablishment)
     {
         $this->Establishment = $etablishment;
 
@@ -167,9 +168,17 @@ class Event
      *
      * @return string
      */
-    public function getEtablishment()
+    public function getEstablishment()
     {
         return $this->Establishment;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        // TODO: Implement toArray() method.
     }
 }
 
