@@ -5,3 +5,8 @@ front_homepage:
 Front_Event:
     resource: "@FrontBundle/Controller/EventController.php"
     type:     annotation
+
+app_babysitter:
+    resource: "@FrontBundle/Controller/BabySitterController.php"
+    type:     annotation
+
