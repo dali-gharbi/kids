@@ -7,7 +7,32 @@
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.default-settings.js') }}"></script>
+    {#  <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.default-settings.js') }}"></script> #}
+
+<script>$(function () {
+        $('#calendar-holder').fullCalendar({
+            header: {
+                left: 'prev, next',
+                center: 'title',
+                right: 'month, basicWeek, basicDay,'
+            },
+            lazyFetching: true,
+            timeFormat: {
+                agenda: 'h:mmt',
+                '': 'h:mmt'
+            },
+            eventSources: [
+                {
+                    url: '{{ path('event_show') }}',
+                    type: 'POST',
+                    data: {},
+                    error: function () {}
+                }
+            ]
+        });
+    });
+</script>
+
 </body>
 
 </html>

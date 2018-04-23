@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new AdminBundle\AdminBundle(),
             new FrontBundle\FrontBundle(),
+            new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
