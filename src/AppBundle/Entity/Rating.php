@@ -22,9 +22,9 @@ class Rating
     private $id;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="Rate", type="string", length=255)
+     * @ORM\Column(name="Rate", type="integer")
      */
     private $rate;
 
@@ -49,7 +49,7 @@ class Rating
     /**
      * Set rate
      *
-     * @param string $rate
+     * @param integer $rate
      *
      * @return Rating
      */
@@ -63,7 +63,7 @@ class Rating
     /**
      * Get rate
      *
-     * @return string
+     * @return integer
      */
     public function getRate()
     {

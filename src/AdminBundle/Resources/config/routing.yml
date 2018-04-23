@@ -9,3 +9,7 @@ app_speciality:
 Admin_Event:
     resource: "@AdminBundle/Controller/EventController.php"
     type:     annotation
+
+app_pediatrician:
+    resource: "@AdminBundle/Controller/PediatricianController.php"
+    type:     annotation
