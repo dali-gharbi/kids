@@ -9,3 +9,8 @@ Front_Event:
 Front_Pediatrician:
     resource: "@FrontBundle/Controller/PediatricianController.php"
     type:     annotation
+
+app_babysitter:
+    resource: "@FrontBundle/Controller/BabySitterController.php"
+    type:     annotation
+

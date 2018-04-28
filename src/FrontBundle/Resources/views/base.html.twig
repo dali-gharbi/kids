@@ -55,6 +55,8 @@
                             </li>
                             <li role="presentation"><a href="contact.html"
                                                        class="{% block link6State %}  {% endblock %}">Contact</a></li>
+                            <li role="presentation"><a href="{{ path('babysitter') }}"
+                                                      class="{% block link7State %}  {% endblock %}">babysitter</a></li>
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED" ) %}
                                 <li role="presentation">
                                     <span class="text-small"
