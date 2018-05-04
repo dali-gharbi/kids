@@ -303,6 +303,28 @@ desired effect
                                     des spécialitées</a></li>
                         </ul>
                     </li>
+                    <li class="treeview {% block link7State %} {% endblock %}">
+                        <a href="#"><i class="fa fa-link"></i> <span>Vaccine</span>
+                            <span class="pull-right-container">
+                             <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="{% block link8State %}  {% endblock %}"><a href="{{ path('vaccines') }}">Liste des vaccins</a></li>
+                            <li class="{% block link9State %}  {% endblock %}"><a href="{{ path('vaccine_new') }}">Ajouter vaccin</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview {% block link10State %} {% endblock %}">
+                        <a href="#"><i class="fa fa-link"></i> <span>forUM</span>
+                            <span class="pull-right-container">
+                             <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="{% block link11State %}  {% endblock %}"><a href="{{ path('discutea_forum_create_category') }}">create category</a></li>
+                            <li class="{% block link13State %}  {% endblock %}"><a href="{{ path('discutea_forum_admin_dashboard') }}">admin dashboard</a></li>
+                        </ul>
+                    </li>
                 </ul>
             {% endblock %}
             <!-- /.sidebar-menu -->

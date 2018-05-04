@@ -8,6 +8,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        $en = $this->getDoctrine()->getManager()->getRepository("AppBundle:User");
         return $this->render('@Admin/Default/index.html.twig');
     }
 }

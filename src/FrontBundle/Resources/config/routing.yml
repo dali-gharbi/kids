@@ -1,3 +1,12 @@
 front_homepage:
     path:     /
     defaults: { _controller: FrontBundle:Default:index }
+app_vaccine:
+    resource: "@FrontBundle/Controller/VaccineController.php"
+    type:     annotation
+recherche:
+    path:     /recherche
+    defaults: { _controller: FrontBundle:Vaccine:rechercheList }
+all:
+    path: /vaccines/all
+    defaults: { _controller: FrontBundle:Vaccine:all }

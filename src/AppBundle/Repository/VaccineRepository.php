@@ -10,4 +10,19 @@ namespace AppBundle\Repository;
  */
 class VaccineRepository extends \Doctrine\ORM\EntityRepository
 {
+
+
+    function findVaccine($p)
+    {
+$query = $this->createQueryBuilder('p')
+    ->select('p')
+    ->where('p.date = :date')
+    ->setParameter('date', $p)
+    ->getQuery();
+
+   return $query->getResult();
+        
+    }
+
+
 }

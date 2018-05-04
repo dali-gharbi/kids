@@ -23,6 +23,11 @@
 
 <body>
 <header>
+
+
+
+
+
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="navigation">
             <div class="container">
@@ -43,16 +48,21 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation"><a href="{{ path('front_homepage') }}"
                                                        class="{% block link1State %}  {% endblock %}">Home</a></li>
-                            <li role="presentation"><a href="about.html" class="{% block link2State %}  {% endblock %}">About
-                                    Us</a></li>
-                            <li role="presentation"><a href="services.html"
-                                                       class="{% block link3State %}  {% endblock %}">Services</a></li>
-                            <li role="presentation"><a href="portfolio.html"
-                                                       class="{% block link4State %}  {% endblock %}">Portfolio</a></li>
-                            <li role="presentation"><a href="blog.html" class="{% block link5State %}  {% endblock %}">Blog</a>
+
+                            <li role="presentation"><a href="{{ path('recherche') }}"
+                                                       class="{% block link3State %}  {% endblock %}">Recherche Par Date</a></li>
+                            <li role="presentation">
+                                    <a href="{{ path('vaccine') }}" class="{% block link4State %}  {% endblock %}">vaccines</a>
+
+
                             </li>
-                            <li role="presentation"><a href="contact.html"
-                                                       class="{% block link6State %}  {% endblock %}">Contact</a></li>
+
+                            <li role="presentation">
+                                <a href="{{ path('discutea_forum_homepage') }}" class="{% block link5State %}  {% endblock %}">forum</a>
+
+
+                            </li>
+
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED" ) %}
                                 <li role="presentation">
                                     <span class="text-small"
@@ -81,8 +91,6 @@
 
 {% block body %}
 {% endblock %}
-
-
 {% block info %}
     <section id="conatcat-info">
         <div class="container">
