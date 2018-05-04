@@ -1,14 +1,11 @@
-<<<<<<< HEAD
-app_vaccine:
-    resource: "@FrontBundle/Controller/VaccineController.php"
-=======
+
+
 Front_event:
     resource: "@FrontBundle/Controller/EventController.php"
     type:     annotation
 
 Admin_event:
     resource: "@AdminBundle/Controller/EventController.php"
->>>>>>> 426034c734af3c55ff6921576d23fff0a6ea06a9
     type:     annotation
 
 front:
@@ -29,28 +26,24 @@ fos_user_security:
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
-    prefix: /profile
+    prefix:   /profile
 
 fos_user_register:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
-    prefix: /register
+    prefix:   /register
 
 fos_user_resetting:
     resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
-    prefix: /resetting
-
+    prefix:   /resetting
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-    prefix: /profile
-<<<<<<< HEAD
+    prefix:   /profile
 discutea_forum:
     resource: "@DForumBundle/Resources/config/routing.yml"
     prefix:   /
 esprit_api:
     resource: "@DForumBundle/Resources/config/routing.yml"
     prefix:   /
-=======
-
 ancarebeca_fullcalendar:
     resource: "@FullCalendarBundle/Resources/config/routing.yml"
->>>>>>> 426034c734af3c55ff6921576d23fff0a6ea06a9
+
