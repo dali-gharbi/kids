@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('bundles/front/css/animate.css')}}">
     <link href="{{ asset('bundles/front/css/prettyPhoto.css')}}" rel="stylesheet">
     <link href="{{ asset('bundles/front/css/style.css')}}" rel="stylesheet" />
+    {% block stylesheet %}
+    {% endblock %}
     <!-- =======================================================
       Theme Name: Company
       Theme URL: https://bootstrapmade.com/company-free-html-bootstrap-template/
@@ -48,6 +50,7 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation"><a href="{{ path('front_homepage') }}"
                                                        class="{% block link1State %}  {% endblock %}">Home</a></li>
+<<<<<<< HEAD
 
                             <li role="presentation"><a href="{{ path('recherche') }}"
                                                        class="{% block link3State %}  {% endblock %}">Recherche Par Date</a></li>
@@ -63,6 +66,20 @@
 
                             </li>
 
+=======
+                            <li role="presentation"><a href="{{ path('front_pediatre') }}" class="{% block link2State %}  {% endblock %}">
+                             Pediatrician</a></li>
+                            <li role="presentation"><a href="services.html"
+                                                       class="{% block link3State %}  {% endblock %}">Services</a></li>
+                            <li role="presentation"><a href="portfolio.html"
+                                                       class="{% block link4State %}  {% endblock %}">Portfolio</a></li>
+                            <li role="presentation"><a href="blog.html" class="{% block link5State %}  {% endblock %}">Blog</a>
+                            </li>
+                            <li role="presentation"><a href="contact.html"
+                                                       class="{% block link6State %}  {% endblock %}">Contact</a></li>
+                            <li role="presentation"><a href="{{ path('babysitter') }}"
+                                                      class="{% block link7State %}  {% endblock %}">babysitter</a></li>
+>>>>>>> 426034c734af3c55ff6921576d23fff0a6ea06a9
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED" ) %}
                                 <li role="presentation">
                                     <span class="text-small"
@@ -169,7 +186,8 @@
 <script src="{{ asset('bundles/front/js/jquery.isotope.min.js')}}"></script>
 <script src="{{ asset('bundles/front/js/wow.min.js')}}"></script>
 <script src="{{ asset('bundles/front/js/functions.js')}}"></script>
-
+{% block javascripts %}
+{% endblock %}
 </body>
 
 </html>

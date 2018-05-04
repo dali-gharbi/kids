@@ -6,6 +6,15 @@ app_speciality:
     resource: "@AdminBundle/Controller/SpecialityController.php"
     type:     annotation
 
+<<<<<<< HEAD
 app_vaccine:
     resource: "@AdminBundle/Controller/VaccineController.php"
+=======
+Admin_Event:
+    resource: "@AdminBundle/Controller/EventController.php"
+    type:     annotation
+
+app_pediatrician:
+    resource: "@AdminBundle/Controller/PediatricianController.php"
+>>>>>>> 426034c734af3c55ff6921576d23fff0a6ea06a9
     type:     annotation

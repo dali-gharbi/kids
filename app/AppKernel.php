@@ -23,11 +23,15 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new AdminBundle\AdminBundle(),
             new FrontBundle\FrontBundle(),
+<<<<<<< HEAD
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Discutea\DForumBundle\DForumBundle(),
             new MartinGeorgiev\SocialPost\SocialPostBundle()
 
+=======
+            new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
+>>>>>>> 426034c734af3c55ff6921576d23fff0a6ea06a9
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

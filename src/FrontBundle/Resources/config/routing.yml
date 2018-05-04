@@ -1,6 +1,7 @@
 front_homepage:
     path:     /
     defaults: { _controller: FrontBundle:Default:index }
+<<<<<<< HEAD
 app_vaccine:
     resource: "@FrontBundle/Controller/VaccineController.php"
     type:     annotation
@@ -10,3 +11,18 @@ recherche:
 all:
     path: /vaccines/all
     defaults: { _controller: FrontBundle:Vaccine:all }
+=======
+
+Front_Event:
+    resource: "@FrontBundle/Controller/EventController.php"
+    type:     annotation
+
+Front_Pediatrician:
+    resource: "@FrontBundle/Controller/PediatricianController.php"
+    type:     annotation
+
+app_babysitter:
+    resource: "@FrontBundle/Controller/BabySitterController.php"
+    type:     annotation
+
+>>>>>>> 426034c734af3c55ff6921576d23fff0a6ea06a9

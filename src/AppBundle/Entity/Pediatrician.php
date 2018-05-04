@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Pediatrician
 {
+
+    public function __construct()
+    {
+    }
     /**
      * @var int
      *
@@ -28,20 +32,32 @@ class Pediatrician
      */
     private $name;
 
-    /**
-     * Inversed side
-     * @var int
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Address", inversedBy="Address")
-     * @ORM\JoinColumn(name="Address", referencedColumnName="id", onDelete="CASCADE")
-     */
-    private $Address;
+   // /**
+   //  * Inversed side
+   //  * @var int
+   //  * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Address", inversedBy="Address")
+   //  * @ORM\JoinColumn(name="Address", referencedColumnName="id", onDelete="CASCADE")
+   //  */
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="Photo", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Address", inversedBy="pediatricians", cascade="persist")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="id", onDelete="CASCADE")
      */
-    private $photo;
+    private $address;
+
+    ///**
+    // * @var string
+    // *
+   //  * @ORM\Column(name="Photo", type="string", length=255)
+   //  */
+   // private $photo;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="Price", type="float")
+     */
+    private $price;
 
     /**
      * Inversed side
@@ -52,7 +68,7 @@ class Pediatrician
     private $rating;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Speciality", inversedBy="pediatricians")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Speciality", inversedBy="pediatricians", cascade="persist")
      * @ORM\JoinColumn(nullable=true, referencedColumnName="id", onDelete="CASCADE")
      */
     private $speciality;
@@ -95,7 +111,7 @@ class Pediatrician
     /**
      * Set address
      *
-     * @param string $Address
+     * @param Address $Address
      *
      * @return Pediatrician
      */
@@ -109,35 +125,59 @@ class Pediatrician
     /**
      * Get Address
      *
-     * @return string
+     * @return Address
      */
     public function getAddress()
     {
-        return $this->Address;
+        return $this->address;
     }
 
+   // /**
+   //  * Set photo
+   //  *
+   //  * @param string $photo
+   //  *
+   //  * @return Pediatrician
+   //  */
+   // public function setPhoto($photo)
+   // {
+   //     $this->photo = $photo;
+//
+  //      return $this;
+  //  }
+
+  //  /**
+  //   * Get photo
+  //   *
+  //   * @return string
+  //   */
+  //  public function getPhoto()
+  //  {
+  //      return $this->photo;
+  //  }
+
     /**
-     * Set photo
+     * Set price
      *
-     * @param string $photo
+     * @param float $price
      *
      * @return Pediatrician
      */
-    public function setPhoto($photo)
+    public function setPrice($price)
     {
-        $this->photo = $photo;
+        $this->price = $price;
 
         return $this;
     }
 
     /**
-     * Get photo
+     * Get price
      *
-     * @return string
+     * @return float
      */
-    public function getPhoto()
+    public function getPrice()
     {
-        return $this->photo;
+        return $this->price;
     }
 
     /**
@@ -169,7 +209,7 @@ class Pediatrician
      *
      * @return Speciality
      */
-    public function getSpeciality(): Speciality
+    public function getSpeciality()
     {
         return $this->speciality;
     }
