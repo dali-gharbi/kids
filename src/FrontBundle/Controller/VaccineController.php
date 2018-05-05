@@ -325,7 +325,11 @@ class VaccineController extends Controller
 
 
 
-
+    /**
+     * Bulk Action
+     * @Route("/recherche/", name="recherche_action")
+     * @Method("POST")
+     */
     function rechercheListAction(Request $req)
 
     {

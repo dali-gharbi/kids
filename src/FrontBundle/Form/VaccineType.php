@@ -18,6 +18,9 @@ class VaccineType extends AbstractType
         $builder
             ->add('name')
             ->add('date')
+            ->add('description')
+            ->add('effetnegatif')
+            ->add('age')
             ->add('User', EntityType::class, array(
                 'class' => 'AppBundle\Entity\User',
                 'choice_label' => 'username',

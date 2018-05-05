@@ -2,7 +2,7 @@ front_homepage:
     path:     /
     defaults: { _controller: FrontBundle:Default:index }
 
-app_vaccine:
+Front_vaccine:
     resource: "@FrontBundle/Controller/VaccineController.php"
     type:     annotation
 

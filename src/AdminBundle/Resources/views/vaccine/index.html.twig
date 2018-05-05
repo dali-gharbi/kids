@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="page-header">
-            <h2><a href="{{ path('vaccine') }}">Vaccine</a></h2>
+            <h2><a href="{{ path('vaccines') }}">Vaccine</a></h2>
         </div>
     </div>    
 <div class="col-md-3 pull-left">
@@ -16,11 +16,11 @@
     <!-- PAGE SIZE -->
     <div class="pagination form-inline ">
         <select class = "form-control"  onchange="window.location = this.value" >
-            <option value='{{ path('vaccine', app.request.query.all|merge({'pcg_show': '10'})) }}' {% if app.request.get('pcg_show') == 10 %} selected {% endif %}>10</option>
-            <option value='{{ path('vaccine', app.request.query.all|merge({'pcg_show': '20'})) }}' {% if app.request.get('pcg_show') == 20 %} selected {% endif %}>20</option>
-            <option value='{{ path('vaccine', app.request.query.all|merge({'pcg_show': '50'})) }}' {% if app.request.get('pcg_show') == 50 %} selected {% endif %}>50</option>
-            <option value='{{ path('vaccine', app.request.query.all|merge({'pcg_show': '100'})) }}' {% if app.request.get('pcg_show') == 100 %} selected {% endif %}>100</option>
-            <option value='{{ path('vaccine', app.request.query.all|merge({'pcg_show': '500'})) }}' {% if app.request.get('pcg_show') == 500 %} selected {% endif %}>500</option>
+            <option value='{{ path('vaccines', app.request.query.all|merge({'pcg_show': '10'})) }}' {% if app.request.get('pcg_show') == 10 %} selected {% endif %}>10</option>
+            <option value='{{ path('vaccines', app.request.query.all|merge({'pcg_show': '20'})) }}' {% if app.request.get('pcg_show') == 20 %} selected {% endif %}>20</option>
+            <option value='{{ path('vaccines', app.request.query.all|merge({'pcg_show': '50'})) }}' {% if app.request.get('pcg_show') == 50 %} selected {% endif %}>50</option>
+            <option value='{{ path('vaccines', app.request.query.all|merge({'pcg_show': '100'})) }}' {% if app.request.get('pcg_show') == 100 %} selected {% endif %}>100</option>
+            <option value='{{ path('vaccines', app.request.query.all|merge({'pcg_show': '500'})) }}' {% if app.request.get('pcg_show') == 500 %} selected {% endif %}>500</option>
         </select>
     </div>
     <!-- END PAGE SIZE -->
@@ -30,7 +30,7 @@
 
 <!-- FILTERING -->
 <div class="col-md-6">
-    <form action="{{ path('vaccine') }}" method="get" >
+    <form action="{{ path('vaccines') }}" method="get" >
 
         <div class="input-group h3">
 
@@ -90,11 +90,12 @@
                         <th width="20px"><input type="checkbox" class="check-all" onclick="toggleAll(this)"></th>
 
                 {% import "@PetkoparaCrudGenerator/macros/th_sortable.html.twig" as macros %}
-                            <th>{{macros.th_sortable('id',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccine')}}</th>
-                            <th>{{macros.th_sortable('name',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccine')}}</th>
-                            <th>{{macros.th_sortable('date',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccine')}}</th>
-                            <th>{{macros.th_sortable('user',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccine')}}</th>
-                            <th>{{macros.th_sortable('address',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccine')}}</th>
+                            <th>{{macros.th_sortable('id',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccines')}}</th>
+                            <th>{{macros.th_sortable('name',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccines')}}</th>
+                            <th>{{macros.th_sortable('age',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccines')}}</th>
+                            <th>{{macros.th_sortable('date',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccines')}}</th>
+                            <th>{{macros.th_sortable('user',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccines')}}</th>
+                            <th>{{macros.th_sortable('address',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccines')}}</th>
 
 
                         <th width = "130px">List</th>
@@ -106,6 +107,7 @@
                         <td><input type="checkbox" name="ids[]" onclick='bulkSubmitBtnManage();' class="check-all" value="{{vaccine.id}}"/></td>
                         <td><a href="{{ path('vaccine_edit', { 'id': vaccine.id }) }}">{{ vaccine.id }}</a></td>
                         <td>{{ vaccine.name }}</td>
+                        <td>{{ vaccine.age }}</td>
                         <td>{%- if vaccine.date %}{{ vaccine.date|date('Y-m-d') }}{% endif %}</td>
                         <td>{{ vaccine.User }}</td>
                         <td>{{ vaccine.Address.Rue }}</td>

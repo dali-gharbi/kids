@@ -29,6 +29,28 @@ class Vaccine
     private $name;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="Age", type="integer")
+     */
+    private $age;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Description", type="string", length=2255)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Effetnegatif", type="string", length=2255)
+     */
+    private $effetnegatif ;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="Date", type="date")
@@ -85,6 +107,81 @@ class Vaccine
     {
         return $this->name;
     }
+
+    /**
+     * Set age
+     *
+     * @param integer $age
+     *
+     * @return Vaccine
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return integer
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Vaccine
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set effetnegatif
+     *
+     * @param string $name
+     *
+     * @return Vaccine
+     */
+    public function setEffetnegatif($effetnegatif)
+    {
+        $this->effetnegatif = $effetnegatif;
+
+        return $this;
+    }
+
+    /**
+     * Get effetnegatif
+     *
+     * @return string
+     */
+    public function getEffetnegatif()
+    {
+        return $this->effetnegatif;
+    }
+
+
 
     /**
      * Set date
