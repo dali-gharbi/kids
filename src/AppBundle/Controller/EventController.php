@@ -11,25 +11,25 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Pediatrician controller.
+ * Event controller.
  *
- * @Route("/api/pediatricians")
+ * @Route("/api/events")
  */
-class PediatricianController extends Controller
+class EventController extends Controller
 {
 
     /**
      * Lists all pediatrician entities.
      *
-     * @Route("/", name="api_pediatrician_all")
+     * @Route("/", name="api_events_all")
      * @Method("GET")
      */
     public function ListAction()
     {
         $em=$this->getDoctrine()->getManager();
-        $pedaitricians =$em->getRepository('AppBundle:Pediatrician')->findAll();
+        $events =$em->getRepository('AppBundle:Event')->findAll();
         $serializer = new Serializer([new ObjectNormalizer()]);
-        $formatted = $serializer->normalize($pedaitricians);
+        $formatted = $serializer->normalize($events);
         return new JsonResponse($formatted);
     }
 }
