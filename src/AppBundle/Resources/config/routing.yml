@@ -1,0 +1,4 @@
+#app_auth:
+#    resource: "@AdminBundle/Controller/SpecialityController.php"
+#    type:     annotation
+

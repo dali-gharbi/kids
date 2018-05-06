@@ -1,5 +1,3 @@
-
-
 Front_event:
     resource: "@FrontBundle/Controller/EventController.php"
     type:     annotation
