@@ -17,3 +17,6 @@ Front_Pediatrician:
 app_babysitter:
     resource: "@FrontBundle/Controller/BabySitterController.php"
     type:     annotation
+web_service_vaccine:
+    path:     /list_vaccine
+    defaults: { _controller: FrontBundle:Vaccine:all }
