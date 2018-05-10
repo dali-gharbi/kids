@@ -11,29 +11,38 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div class="page-header">
-            <h2>View vaccine <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </h2>
+            <h2>   <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Vaccin : {{ vaccine.name}}</h2>
         </div>
     <div class="col-md-6">
-        <p><strong>Id</strong></p>
-        <p>
-            {{ vaccine.id }}
-        </p>
-
-    </div>
-    <div class="col-md-6">
-        <p><strong>Name</strong></p>
+        <p><strong>Nom :</strong></p>
         <p>
             {{ vaccine.name }}
         </p>
-
     </div>
-    <div class="col-md-6">
-        <p><strong>Date</strong></p>
-        <p>
-            {% if vaccine.date %}{{ vaccine.date|date('Y-m-d') }}{% endif %}
-        </p>
-
-    </div>
+        <div class="col-md-6">
+            <p><strong>Address :</strong></p>
+            <p>
+                {{ vaccine.address.rue }}
+            </p>
+        </div>
+        <div class="col-md-6">
+            <p><strong>Age :</strong></p>
+            <p>
+                {{ vaccine.age }} mois
+            </p>
+        </div>
+        <div class="col-md-6">
+            <p><strong>Description :</strong></p>
+            <p>
+                {{ vaccine.description }}
+            </p>
+        </div>
+        <div class="col-md-6">
+            <p><strong>Effet Negatif :</strong></p>
+            <p>
+                {{ vaccine.effetnegatif }}
+            </p>
+        </div>
      </div>
     </div>
 
