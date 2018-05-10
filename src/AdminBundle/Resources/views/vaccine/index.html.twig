@@ -5,6 +5,7 @@
 
 {% block body %}
 
+
 <div class="row">
     <div class="col-md-12">
         <div class="page-header">
@@ -27,25 +28,74 @@
 
 </div>
 
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInputt");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 
-<!-- FILTERING -->
-<div class="col-md-6">
-    <form action="{{ path('vaccines') }}" method="get" >
 
-        <div class="input-group h3">
+    <script>
+        function myFunction2() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInputt2");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 
-            {{form_widget(filterForm.search, { 'attr': {'class': 'form-control'} })}}
-            {{form_rest(filterForm) }}
 
-            <span class="input-group-btn">
-                <button class="btn btn-primary" type="submit">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
+    <!-- FILTERING -->
+    <div class="col-md-6">
+        <input style="width: 200px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;color: limegreen;" type="text" id="myInputt" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+        <input style="width: 200px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;color: limegreen;" type="text" id="myInputt2" onkeyup="myFunction2()" placeholder="Search for age.." title="Type in an age">
+    </div>
 
-        </div>
-    </form>
-</div>
 <!-- END FILTERING -->            
             
             
@@ -84,33 +134,34 @@
 
         <div class="table-responsive col-md-12">
         <form method="POST" id="bulk_form" action="{{ path('vaccine_bulk_action') }} ">
-            <table class="table table-striped table-hover table-bordered" cellspacing="0" cellpadding="0">
+            <table id="myTable" class="table table-striped table-hover table-bordered" cellspacing="0" cellpadding="0">
                 <thead>
                     <tr>
                         <th width="20px"><input type="checkbox" class="check-all" onclick="toggleAll(this)"></th>
 
                 {% import "@PetkoparaCrudGenerator/macros/th_sortable.html.twig" as macros %}
-                            <th>{{macros.th_sortable('id',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccines')}}</th>
-                            <th>{{macros.th_sortable('name',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccines')}}</th>
-                            <th>{{macros.th_sortable('age',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccines')}}</th>
-                            <th>{{macros.th_sortable('date',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccines')}}</th>
-                            <th>{{macros.th_sortable('user',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccines')}}</th>
-                            <th>{{macros.th_sortable('address',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccines')}}</th>
+                        <th>{{macros.th_sortable('name',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccine')}}</th>
+                        <th>{{macros.th_sortable('age',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccines')}}</th>
+                        <th>{{macros.th_sortable('address',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccine')}}</th>
+                        <th>{{macros.th_sortable('description',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccine')}}</th>
+                        <th>{{macros.th_sortable('effet negatif',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccine')}}</th>
+                        <th>{{macros.th_sortable('price',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccine')}}</th>
 
 
-                        <th width = "130px">List</th>
+                        <th width = "130px"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for vaccine in vaccines %}
+                {% for vaccine in vaccines %}
                     <tr>
                         <td><input type="checkbox" name="ids[]" onclick='bulkSubmitBtnManage();' class="check-all" value="{{vaccine.id}}"/></td>
-                        <td><a href="{{ path('vaccine_edit', { 'id': vaccine.id }) }}">{{ vaccine.id }}</a></td>
                         <td>{{ vaccine.name }}</td>
-                        <td>{{ vaccine.age }}</td>
-                        <td>{%- if vaccine.date %}{{ vaccine.date|date('Y-m-d') }}{% endif %}</td>
-                        <td>{{ vaccine.User }}</td>
+                        <td>{{ vaccine.age }} mois</td>
                         <td>{{ vaccine.Address.Rue }}</td>
+                        <td>{{ vaccine.description }}</td>
+                        <td>{{ vaccine.effetnegatif }}</td>
+                        <td>{{ vaccine.price }} TND</td>
+
                         <td class="actions">
                             <a  onclick="return confirm('Are you sure!');" title="Delete" class="btn btn-danger btn-sm" href="{{ path('vaccine_by_id_delete', { 'id': vaccine.id}) }}">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>

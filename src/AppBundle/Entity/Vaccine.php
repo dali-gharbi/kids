@@ -21,6 +21,15 @@ class Vaccine
      */
     private $id;
 
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="price", type="float")
+     */
+    private $price;
+
+
     /**
      * @var string
      *
@@ -57,13 +66,6 @@ class Vaccine
      */
     private $date;
 
-    /**
-     * Inversed side
-     * @var int
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="User")
-     * @ORM\JoinColumn(name="User", referencedColumnName="id", onDelete="CASCADE")
-     */
-    private $User;
 
     /**
      * Inversed side
@@ -207,37 +209,6 @@ class Vaccine
         return $this->date;
     }
 
-    /**
-     * Set user
-     *
-     * @param string $User
-     *
-     * @return Vaccine
-     */
-    public function setUser($User)
-    {
-        $this->User = $User;
-
-        return $this;
-    }
-
-    /**
-     * Get User
-     *
-     * @return string
-     */
-    public function getUser()
-    {
-        return $this->User;
-    }
-
-    /**
-     * Set Address
-     *
-     * @param string $Address
-     *
-     * @return Address
-     */
     public function setAddress($Address)
     {
         $this->Address = $Address;
@@ -254,5 +225,32 @@ class Vaccine
     {
         return $this->Address;
     }
+
+
+    /**
+     * Set price
+     *
+     * @param float $price
+     *
+     * @return Vaccine
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+
 }
 

@@ -142,6 +142,7 @@
                             <th>{{macros.th_sortable('address',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccine')}}</th>
                             <th>{{macros.th_sortable('description',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccine')}}</th>
                             <th>{{macros.th_sortable('effet negatif',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccine')}}</th>
+                            <th>{{macros.th_sortable('price',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'vaccine')}}</th>
 
 
                         <th width = "130px"></th>
@@ -152,10 +153,11 @@
                     <tr>
                         <td><input type="checkbox" name="ids[]" onclick='bulkSubmitBtnManage();' class="check-all" value="{{vaccine.id}}"/></td>
                         <td>{{ vaccine.name }}</td>
-                        <td>{{ vaccine.age }} ans</td>
+                        <td>{{ vaccine.age }} mois</td>
                         <td>{{ vaccine.Address.Rue }}</td>
                         <td>{{ vaccine.description }}</td>
                         <td>{{ vaccine.effetnegatif }}</td>
+                        <td>{{ vaccine.price }} TND</td>
                         <td class="actions" width="200px">
                             <a title='Show' class="btn btn-info btn-sm" href="{{ path('vaccinee_show', { 'id': vaccine.id }) }}">
                                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>

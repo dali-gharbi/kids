@@ -21,14 +21,7 @@ class VaccineType extends AbstractType
             ->add('description')
             ->add('effetnegatif')
             ->add('age')
-            ->add('User', EntityType::class, array(
-                'class' => 'AppBundle\Entity\User',
-                'choice_label' => 'username',
-                'placeholder' => 'Please choose',
-                'empty_data' => null,
-                'required' => false
- 
-            )) 
+            ->add('price')
             ->add('Address', EntityType::class, array(
                 'class' => 'AppBundle\Entity\Address',
                 'choice_label' => 'Rue',
