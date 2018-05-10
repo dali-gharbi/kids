@@ -43,10 +43,10 @@ class VaccineController extends Controller
 
         return $this->render('@Front/vaccine/index.html.twig', array(
             'vaccines' => $vaccines,
+            'prixtotal' => $prixtotal=0,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
             'totalOfRecordsString' => $totalOfRecordsString,
-
         ));
     }
 
@@ -60,14 +60,23 @@ class VaccineController extends Controller
      */
     public function allAction()
     {
-            $task = $this->getDoctrine()->getManager()->getRepository('AppBundle:Vaccine')->findAll();
-            $serializer = new Serializer([new ObjectNormalizer()]);
-            $formatted = $serializer->normalize($task);
-        return new JsonResponse($formatted);
+
+        $json = array();
+        $vaccine = $this->getDoctrine()->getRepository('AppBundle:Vaccine')->findAll();
+        foreach ($vaccine as $vac){
+
+            array_push($json,[
+                'id' => $vac->getId(),
+                'name' => $vac->getName(),
+                'age' => $vac->getAge(),
+                'description' =>$vac->getDescription(),
+                'effetnegatif' =>$vac->getEffetnegatif()
+            ]);
+          }
+
+        return new JsonResponse($json);
+
     }
-
-
-
 
 
 
@@ -294,34 +303,42 @@ class VaccineController extends Controller
 
     /**
     * Bulk Action
-    * @Route("/bulk-action/", name="vaccine_bulk_action")
+    * @Route("/bulk-action/", name="vaccine_bulk_actionn")
     * @Method("POST")
     */
     public function bulkAction(Request $request)
     {
         $ids = $request->get("ids", array());
-        $action = $request->get("bulk_action", "delete");
-
-        if ($action == "delete") {
+        $action = $request->get("bulk_action", "calculerprix");
+        $prixtotal=0;
+        if ($action == "calculerprix") {
             try {
                 $em = $this->getDoctrine()->getManager();
                 $repository = $em->getRepository('AppBundle:Vaccine');
-
                 foreach ($ids as $id) {
                     $vaccine = $repository->find($id);
-                    $em->remove($vaccine);
-                    $em->flush();
+                    $prixtotal=$prixtotal + $vaccine->getPrice();
                 }
-
-                $this->get('session')->getFlashBag()->add('success', 'vaccines was deleted successfully!');
-
             } catch (Exception $ex) {
                 $this->get('session')->getFlashBag()->add('error', 'Problem with deletion of the vaccines ');
+
             }
         }
+        $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->getRepository('AppBundle:Vaccine')->createQueryBuilder('e');
 
-        return $this->redirect($this->generateUrl('vaccine'));
-    }
+        list($filterForm, $queryBuilder) = $this->filter($queryBuilder, $request);
+        list($vaccines, $pagerHtml) = $this->paginator($queryBuilder, $request);
+
+        $totalOfRecordsString = $this->getTotalOfRecordsString($queryBuilder, $request);
+
+        return $this->render('@Front/vaccine/index.html.twig', array(
+            'vaccines' => $vaccines,
+            'prixtotal' => $prixtotal,
+            'pagerHtml' => $pagerHtml,
+            'filterForm' => $filterForm->createView(),
+            'totalOfRecordsString' => $totalOfRecordsString,
+        ));      }
 
 
 

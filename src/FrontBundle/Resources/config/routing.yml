@@ -20,3 +20,6 @@ app_babysitter:
 web_service_vaccine:
     path:     /list_vaccine
     defaults: { _controller: FrontBundle:Vaccine:all }
+Calcul_prix:
+    path:     /
+    defaults: { _controller: FrontBundle:Vaccine:vaccine_bulk_actionn}

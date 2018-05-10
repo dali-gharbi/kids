@@ -1,8 +1,6 @@
 {% extends '@Front/base.html.twig' %}
-
 {% block title %}
 {{ parent() }} - vaccine
-
 {% endblock %}
 
 {% block body %}
@@ -125,12 +123,48 @@
          {% endfor %} 
     </div>
 </div>
-    
+<script>
+    function toggleAll(source) {
+        var aInputs = document.getElementsByTagName('input');
+        for (var i = 0; i < aInputs.length; i++) {
+            if (aInputs[i] != source && aInputs[i].className == source.className) {
+                aInputs[i].checked = source.checked;
+            }
+        }
+        if (source.checked) {
+            document.getElementById('bulkSubmitBtn').disabled = false;
+        } else {
+            document.getElementById('bulkSubmitBtn').disabled = true;
+
+        }
+    }
+
+    function bulkSubmitBtnManage()
+    {
+        var checkboxs = document.getElementsByClassName("check-all");
+        var selected = false;
+        for (var i = 0, l = checkboxs.length; i < l; i++)
+        {
+            if (checkboxs[i].checked)
+            {
+                selected = true;
+                break;
+            }
+        }
+
+        if (selected) {
+            document.getElementById('bulkSubmitBtn').disabled = false;
+        } else {
+            document.getElementById('bulkSubmitBtn').disabled = true;
+
+        }
+    }
+</script>
 
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="table-responsive col-md-12">
-        <form method="POST" id="bulk_form" action="{{ path('vaccine_bulk_action') }} ">
+        <form method="POST" id="bulk_form" action="{{ path('vaccine_bulk_actionn') }} ">
             <table id="myTable" class="table table-striped table-hover table-bordered" cellspacing="0" cellpadding="0" style="color:black">
                 <thead>
                     <tr>
@@ -165,6 +199,7 @@
                         </td>
 
 
+
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -175,12 +210,19 @@
 </div> <!-- /#list -->
 
 
+<div class="row" style="border:1 px solid black">
+    <div class="col-md-4 pull-left">
+        <div class="pagination form-inline ">
+            <select class = "form-control" name="bulk_action" >
+                <option value="calculerprix">Calculer Prix</option>
+            </select>
+            <input type="submit" id='bulkSubmitBtn' onclick="return confirm('Vous allez calculer la somme des prix des vaccins selectionnés')" form="bulk_form" class="form-control btn btn-danger btn-sm" disabled>
+        </div>
 
-<div class="row">
-
+    </div>
     
     <div class='col-md-3 pagination text-center'>
-         <p>{{totalOfRecordsString}}</p>
+         <p>{{totalOfRecordsString}}</p>  <h2>Prix : {{ prixtotal }} TND </h2>
     </div>
  
     <div class="col-md-5 text-right">
