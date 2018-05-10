@@ -59,13 +59,6 @@ class Vaccine
      */
     private $effetnegatif ;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="Date", type="date")
-     */
-    private $date;
-
 
     /**
      * Inversed side
@@ -184,30 +177,6 @@ class Vaccine
     }
 
 
-
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Vaccine
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
 
     public function setAddress($Address)
     {

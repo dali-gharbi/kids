@@ -17,7 +17,6 @@ class VaccineType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('date')
             ->add('description')
             ->add('effetnegatif')
             ->add('age')
