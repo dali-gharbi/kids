@@ -2,13 +2,15 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Pediatrician controller.
@@ -21,30 +23,36 @@ class AuthController extends Controller
     /**
      * Displays a form to create a new Pediatrician entity.
      *
-     * @Route("/login", name="loginapi")
-     * @Method({"POST"})
+     * @Route("/log", name="logg")
+     * @Method("POST")
      */
     public function loginAction(Request $request)
     {
-        $parametersAsArray = [];
-        $result = array();
-        if ($content = $request->getContent()) {
-            $parametersAsArray = json_decode($content, true);
-            $user_manager = $this->get('fos_user.user_manager');
-            $factory = $this->get('security.encoder_factory');
-            $user = $user_manager->findUserByUsername($parametersAsArray['username']);
-            $encoder = $factory->getEncoder($user);
-            $bool = ($encoder->isPasswordValid($user->getPassword(),$parametersAsArray['password'],$user->getSalt())) ? "true" : "false";
-            if($bool) {
-                $result =  array('valid' => $bool, 'username' => $user->getUsername(), 'role' => $user->getRoles());
-            } else {
-                $result = array('valid' => false);
-            }
+        $json = array();
+        $user = new User();
+
+        $username = $request->get('username');
+        $password = $request->get('password');
+        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(
+            ['username' => $username ]
+        );
+        $encoded = $this->get('security.encoder_factory')->getEncoder($user)->isPasswordValid($user->getPassword(),$password, $user->getSalt());
+        if ($encoded) {
+            array_push($json,[
+                'status' => 1,
+                'id' => $user->getId()
+            ]);
+            return new JsonResponse($json);
         } else {
-            $result =  array('valid' => false);
+            array_push($json,[
+                'status' => 0,
+                'id' => 0
+            ]);
+            return new JsonResponse($json);
         }
-        $serializer = new Serializer([new ObjectNormalizer()]);
-        $formatted = $serializer->normalize($result);
-        return new JsonResponse($formatted);
     }
+
+
+
+
 }
