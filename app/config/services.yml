@@ -4,6 +4,16 @@ parameters:
     #parameter_name: value
 
 services:
+    app.form.registration:
+        class: AppBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }
+    app.redirect_after_registration_subscriber:
+            class: AppBundle\EventListener\RedirectAfterRegistrationSubscriber
+            autowire: true
+            tags:
+                - { name: kernel.event_subscriber }
+
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services
@@ -45,3 +55,5 @@ services:
         arguments: [ "@doctrine.orm.entity_manager" ]
         tags:
                 - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadData }
+    AppBundle\Controller\RegistrationController:
+        arguments: ["@fos_user.registration.form.factory"]

@@ -1,0 +1,66 @@
+{% extends '@Front/base.html.twig' %}
+
+{% block title %}
+{{ parent() }} - commentSharedExperience
+{% endblock %}
+
+{% block body %}
+<div class="col-md-6 col-md-offset-3">
+<div id="top" class="row">
+    <div class="page-header">
+        <h2>View commentSharedExperience <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <p><strong>Id</strong></p>
+        <p>
+            {{ commentSharedExperience.id }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Discription</strong></p>
+        <p>
+            {{ commentSharedExperience.discription }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Likes</strong></p>
+        <p>
+            {{ commentSharedExperience.likes }}
+        </p>
+
+    </div></div>
+
+<hr/>
+
+
+<div class="form-group">
+    <a class="btn btn-default" href="{{ path('commentsharedexperience') }}">
+        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+        Back to list
+    </a>
+    <a class="btn btn-primary" href="{{ path('commentsharedexperience_edit', { 'id':  commentSharedExperience.id }) }}">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        Edit
+    </a>
+    <a class="btn btn-info" href="{{ path('commentsharedexperience_new') }}">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        New
+    </a>
+    <form action="{{ path('commentsharedexperience_delete', { 'id': commentSharedExperience.id }) }}" method="post" style="display: inline-block">
+        <input type="hidden" name="_method" value="DELETE" />
+        {{ form_widget(delete_form) }}
+        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure');">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            Delete
+        </button>
+    </form>
+</div>
+</div>
+
+{% endblock %}
+

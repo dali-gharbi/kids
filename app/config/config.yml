@@ -9,11 +9,15 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    image_directory : '%kernel.project_dir%/web/forum/theme'
+
 
 framework:
     #esi: ~
     # old trnaslator = { fallbacks: ['%locale%'] }
     translator: ~
+    templating:
+        engines: ['twig']
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -79,3 +83,37 @@ fos_user:
     from_email:
         address: "kids@gmail.com"
         sender_name: "kids app"
+    registration:
+        form:
+            type: AppBundle\Form\RegistrationType
+
+nomaya_social:
+    buttons:
+        facebook:
+            url:            null
+            locale:         "fr_FR"
+            send:           false
+            width:          500
+            showFaces:      true
+            layout:         "button_count"
+        twitter:
+            url:            null
+            locale:         "fr"
+            message:        "Je veux partager ça avec vous"
+            text:           "Tweet"
+            via:            "L'Equipe cartedevisitevirtuelle.fr"
+            tag:            "ttot"
+        googleplus:
+            url:            null
+            locale :        "fr"
+            size :          "medium"
+            annotation :    "bubble"
+            width :         300
+        linkedin:
+            url:            null
+            locale:         "fr_FR"
+            counter:        "right"
+
+    links:
+        facebook:            "https://www.facebook.com/poweress/"
+    theme:                  'default' # optional

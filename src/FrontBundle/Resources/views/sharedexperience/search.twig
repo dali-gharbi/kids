@@ -1,0 +1,16 @@
+
+    <ul>
+
+        {% for sharedExperience in sharedExperiences %}
+            <li>
+                <div class="media-left">
+                    <i class="fa fa-book"></i>
+                </div>
+                <div class="media-body">
+                    <a href="{{ path('commentsharedexperiences',{'id':sharedExperience.id}) }}">
+                        <h4 class="media-heading">{{ sharedExperience.title }}</h4></a>
+                    <p>{{ sharedExperience.description[:50] }}...</p>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>

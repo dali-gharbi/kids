@@ -1,0 +1,499 @@
+{% extends '@Front/base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - sharedExperience index
+{% endblock %}
+
+   {% block pageHeader %}
+       <a href="{{ path('sharedexperience') }}">Forum</a>
+   {% endblock %}
+        {% block pageDescription %}
+            Forum
+        {% endblock %}
+    {% block pageBreadcrumb %}
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">Forum</li>
+    {% endblock %}
+    {% block link7State %} active {% endblock %}
+    {% block linkExperienceState %} active {% endblock %}
+
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h2><a href="{{ path('sharedexperience',{'id':id}) }}">SharedExperience</a></h2>
+            </div>
+        </div>
+
+        <style>
+        </style>
+
+        <style>
+
+            body {
+                background-image: url("{{ asset('tay.jpg') }}");
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-position: center;
+            }
+            /**
+         * Oscuro: #283035
+         * Azul: #03658c
+         * Detalle: #c7cacb
+         * Fondo: #dee1e3
+         ----------------------------------*/
+            * {
+                margin: 0;
+                padding: 0;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            a {
+                color: #03658c;
+                text-decoration: none;
+            }
+
+            ul {
+                list-style-type: none;
+            }
+
+            body {
+                font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
+                background: #dee1e3;
+            }
+
+            /** ====================
+             * Lista de Comentarios
+             =======================*/
+            .comments-container {
+                margin: 60px auto 15px;
+                width: 768px;
+            }
+
+            .comments-container h1 {
+                font-size: 36px;
+                color: #283035;
+                font-weight: 400;
+            }
+
+            .comments-container h1 a {
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            .comments-list {
+                margin-top: 30px;
+                position: relative;
+            }
+
+            /**
+             * Lineas / Detalles
+             -----------------------*/
+            .comments-list:before {
+                content: '';
+                width: 2px;
+                height: 100%;
+                background: #c7cacb;
+                position: absolute;
+                left: 32px;
+                top: 0;
+            }
+
+            .comments-list:after {
+                content: '';
+                position: absolute;
+                background: #c7cacb;
+                bottom: 0;
+                left: 27px;
+                width: 7px;
+                height: 7px;
+                border: 3px solid #dee1e3;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+            }
+
+            .reply-list:before, .reply-list:after {
+                display: none;
+            }
+
+            .reply-list li:before {
+                content: '';
+                width: 60px;
+                height: 2px;
+                background: #c7cacb;
+                position: absolute;
+                top: 25px;
+                left: -55px;
+            }
+
+            .comments-list li {
+                margin-bottom: 15px;
+                display: block;
+                position: relative;
+            }
+
+            .comments-list li:after {
+                content: '';
+                display: block;
+                clear: both;
+                height: 0;
+                width: 0;
+            }
+
+            .reply-list {
+                padding-left: 88px;
+                clear: both;
+                margin-top: 15px;
+            }
+
+            /**
+             * Avatar
+             ---------------------------*/
+            .comments-list .comment-avatar {
+                width: 65px;
+                height: 65px;
+                position: relative;
+                z-index: 99;
+                float: left;
+                border: 3px solid #FFF;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+                -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+                -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+                overflow: hidden;
+            }
+
+            .comments-list .comment-avatar img {
+                width: 100%;
+                height: 100%;
+            }
+
+            .reply-list .comment-avatar {
+                width: 50px;
+                height: 50px;
+            }
+
+            .comment-main-level:after {
+                content: '';
+                width: 0;
+                height: 0;
+                display: block;
+                clear: both;
+            }
+
+            /**
+             * Caja del Comentario
+             ---------------------------*/
+            .comments-list .comment-box {
+                width: 680px;
+                float: right;
+                position: relative;
+                -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+                -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+                box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+            }
+
+            .comments-list .comment-box:before, .comments-list .comment-box:after {
+                content: '';
+                height: 0;
+                width: 0;
+                position: absolute;
+                display: block;
+                border-width: 10px 12px 10px 0;
+                border-style: solid;
+                border-color: transparent #FCFCFC;
+                top: 8px;
+                left: -11px;
+            }
+
+            .comments-list .comment-box:before {
+                border-width: 11px 13px 11px 0;
+                border-color: transparent rgba(0, 0, 0, 0.05);
+                left: -12px;
+            }
+
+            .reply-list .comment-box {
+                width: 610px;
+            }
+
+            .comment-box .comment-head {
+                background: #FCFCFC;
+                padding: 10px 12px;
+                border-bottom: 1px solid #E5E5E5;
+                overflow: hidden;
+                -webkit-border-radius: 4px 4px 0 0;
+                -moz-border-radius: 4px 4px 0 0;
+                border-radius: 4px 4px 0 0;
+            }
+
+            .comment-box .comment-head i {
+                float: right;
+                margin-left: 14px;
+                position: relative;
+                top: 2px;
+                color: #A6A6A6;
+                cursor: pointer;
+                -webkit-transition: color 0.3s ease;
+                -o-transition: color 0.3s ease;
+                transition: color 0.3s ease;
+            }
+
+            .comment-box .comment-head i:hover {
+                color: #03658c;
+            }
+
+            .comment-box .comment-name {
+                color: #283035;
+                font-size: 14px;
+                font-weight: 700;
+                float: left;
+                margin-right: 10px;
+            }
+
+            .comment-box .comment-name a {
+                color: #283035;
+            }
+
+            .comment-box .comment-head span {
+                float: left;
+                color: #999;
+                font-size: 13px;
+                position: relative;
+                top: 1px;
+            }
+
+            .comment-box .comment-content {
+                background: #FFF;
+                padding: 12px;
+                font-size: 15px;
+                color: #595959;
+                -webkit-border-radius: 0 0 4px 4px;
+                -moz-border-radius: 0 0 4px 4px;
+                border-radius: 0 0 4px 4px;
+            }
+
+            .comment-box .comment-name.by-author, .comment-box .comment-name.by-author a {
+                color: #03658c;
+            }
+
+            .comment-box .comment-name.by-author:after {
+                content: 'autor';
+                background: #03658c;
+                color: #FFF;
+                font-size: 12px;
+                padding: 3px 5px;
+                font-weight: 700;
+                margin-left: 10px;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+            }
+
+            /** =====================
+             * Responsive
+             ========================*/
+            @media only screen and (max-width: 766px) {
+                .comments-container {
+                    width: 480px;
+                }
+
+                .comments-list .comment-box {
+                    width: 390px;
+                }
+
+                .reply-list .comment-box {
+                    width: 320px;
+                }
+            }
+        </style>
+
+
+        <div class="col-md-3 pull-left">
+
+            <!-- PAGE SIZE -->
+            <div class="pagination form-inline ">
+                <select class="form-control" onchange="window.location = this.value">
+                    <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '10'})) }}' {% if app.request.get('pcg_show') == 10 %} selected {% endif %}>
+                        10
+                    </option>
+                    <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '20'})) }}' {% if app.request.get('pcg_show') == 20 %} selected {% endif %}>
+                        20
+                    </option>
+                    <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '50'})) }}' {% if app.request.get('pcg_show') == 50 %} selected {% endif %}>
+                        50
+                    </option>
+                    <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '100'})) }}' {% if app.request.get('pcg_show') == 100 %} selected {% endif %}>
+                        100
+                    </option>
+                    <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '500'})) }}' {% if app.request.get('pcg_show') == 500 %} selected {% endif %}>
+                        500
+                    </option>
+                </select>
+            </div>
+            <!-- END PAGE SIZE -->
+
+        </div>
+
+
+        <div class="col-md-3">
+
+            <a class="btn btn-primary h3 pull-right" href="{{ path('sharedexperience_new',{'theme':id}) }}"
+               style="margin-bottom:10px">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New
+            </a>
+            <a class="btn dropdown-toggle pull-right h3" data-toggle="collapse" data-target="#filters">
+                Filter
+                <span class="caret"></span>
+            </a>
+        </div>
+
+
+        {#  <div class="col-md-12">
+              {%- if form_errors(filterForm) %}
+              <div class="alert alert-block alert-error fade in form-errors">
+                  {{ form_errors(filterForm) }}
+              </div>
+              {% endif %}
+          </div>#}
+
+    </div> <!-- /#top -->
+
+
+    <div class="row">
+        <div class="col-md-12">
+            {% for type, flashMessages in app.session.flashbag.all() %}
+                {% for flashMessage in flashMessages %}
+                    <div class="alert alert-{{ type }}">
+                        {{ flashMessage|raw }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    {#<div class="col-md-6">
+        <p>Dans ce forum : Mamans, Papas, Parents, vous pouvez poser toutes vos questions ! Ce forum est la source d’une belle entraide entre les parents lecteurs de Cool Parents Make Happy Kids (et pas seulement d’ailleurs !) qui ont des réponses toujours bienveillantes et pertinentes. Je n’hésiterai pas non plus à répondre directement moi-même à certaines de vos questions en rédigeant un article ou en réalisant une vidéo sur le sujet (le délai de réponse sera alors un peu plus long évidemment…).
+        </p>
+
+    </div>#}
+
+    <div class="col-md-6 col-md-offset-3">
+
+        <div class="row">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+            <script>
+                $(document).ready(function () {
+                    $("#inputSearch").keyup(function () {
+                        var a = $('#inputSearch').val();
+                        $.get("/kids/web/app_dev.php/sharedexperience/{{ id }}/" + a + "/search/SharedExperience", function (data) {
+                            $("#sharedExperience").html(data);
+                        });
+                    });
+                });
+            </script>
+            <div class="col-md-12">
+                <input type="text" placeholder="Search" id="inputSearch"/>
+                <form method="POST" id="bulk_form" action="{{ path('sharedexperience_bulk_action') }} ">
+                    <!-- Contenedor Principal -->
+                    <div class="media" id="sharedExperience">
+                        <ul>
+                            {% for sharedExperience in sharedExperiences %}
+                                <li>
+                                    <div class="media-left">
+                                        <i class="fa fa-book"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="{{ path('commentsharedexperiences',{'id':sharedExperience.id}) }}">
+                                            <h4 class="media-heading">{{ sharedExperience.title }}</h4></a>
+                                        <p>{{ sharedExperience.description[:50] }}...</p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {#<table class="table table-striped table-hover table-bordered" cellspacing="0" cellpadding="0">#}
+                    {#<thead>#}
+                    {#<tr>#}
+                    {#<th width="20px"><input type="checkbox" class="check-all" onclick="toggleAll(this)"></th>#}
+                    {#{% import "@PetkoparaCrudGenerator/macros/th_sortable.html.twig" as macros %}#}
+                    {#<th>{{macros.th_sortable('id',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'sharedexperience')}}</th>#}
+                    {#<th>{{macros.th_sortable('theme',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'sharedexperience')}}</th>#}
+
+                    {#<th>{{macros.th_sortable('title',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'sharedexperience')}}</th>#}
+                    {#<th>{{macros.th_sortable('description',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'sharedexperience')}}</th>#}
+                    {#<th>{{macros.th_sortable('likes',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'sharedexperience')}}</th>#}
+
+
+                    {#<th width = "130px">List</th>#}
+                    {#</tr>#}
+                    {#</thead>#}
+                    {#<tbody>#}
+                    {#{% for sharedExperience in sharedExperiences %}#}
+                    {#<tr>#}
+                    {#<td><input type="checkbox" name="ids[]" onclick='bulkSubmitBtnManage();' class="check-all" value="{{sharedExperience.id}}"/></td>#}
+                    {#<td><a href="{{ path('sharedexperience', { 'id': sharedExperience.id }) }}">{{ sharedExperience.id }}</a></td>#}
+                    {#{% if sharedExperience.theme %}#}
+                    {#<td>{{ sharedExperience.theme.name }}</td>#}
+                    {#{% else %}#}
+                    {#<td>N/A</td>#}
+                    {#{% endif %}#}
+                    {#<td>{{ sharedExperience.title }}</td>#}
+                    {#<td>{{ sharedExperience.description }}</td>#}
+                    {#<td>{{ sharedExperience.likes }}</td>#}
+
+                    {#<td class="actions">#}
+                    {#<a  onclick="return confirm('Are you sure!');" title="Delete" class="btn btn-danger btn-sm" href="{{ path('sharedexperience_delete', { 'id': sharedExperience.id}) }}">#}
+                    {#<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>#}
+                    {#</a>#}
+                    {#<a title='Show' class="btn btn-info btn-sm" href="{{ path('sharedexperience_show', { 'id': sharedExperience.id }) }}">#}
+                    {#<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>#}
+                    {#</a>#}
+                    {#<a  title='Edit' class="btn btn-primary btn-sm" href="{{ path('sharedexperience_edit', { 'id': sharedExperience.id }) }}">#}
+                    {#<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>#}
+                    {#</a>#}
+                    {#</td>#}
+
+
+                    {#</tr>#}
+                    {#{% endfor %}#}
+                    {#</tbody>#}
+                    {#</table>#}
+                </form>
+
+
+            </div>
+        </div> <!-- /#list -->
+
+
+        <div class="row">
+            <div class="col-md-4 pull-left">
+                <div class="pagination form-inline ">
+                    <select class="form-control" name="bulk_action">
+                        <option value="delete">DELETE</option>
+                    </select>
+                    <input type="submit" id='bulkSubmitBtn' onclick="return confirm('Are you sure?')" form="bulk_form"
+                           class="form-control btn btn-danger btn-sm" disabled>
+                </div>
+            </div>
+
+            <div class='col-md-3 pagination text-center'>
+                <p>{{ totalOfRecordsString }}</p>
+            </div>
+
+            <div class="col-md-5 text-right">
+                {{ pagerHtml|raw }}
+            </div>
+        </div> <!-- /#bottom -->
+
+    </div>
+
+{% endblock %}
+

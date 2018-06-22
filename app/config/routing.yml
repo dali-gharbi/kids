@@ -1,3 +1,27 @@
+Admin_comment_shared_experience:
+    resource: "@AdminBundle/Controller/CommentSharedExperienceController.php"
+    type:     annotation
+
+Front_comment_shared_experience:
+    resource: "@FrontBundle/Controller/CommentSharedExperienceController.php"
+    type:     annotation
+
+Admin_theme:
+    resource: "@AdminBundle/Controller/ThemeController.php"
+    type:     annotation
+
+Front_theme:
+    resource: "@FrontBundle/Controller/ThemeController.php"
+    type:     annotation
+
+Admin_shared_experience:
+    resource: "@AdminBundle/Controller/SharedExperienceController.php"
+    type:     annotation
+
+Front_shared_experience:
+    resource: "@FrontBundle/Controller/SharedExperienceController.php"
+    type:     annotation
+
 Front_event:
     resource: "@FrontBundle/Controller/EventController.php"
     type:     annotation
@@ -40,3 +64,7 @@ fos_user_change_password:
 
 ancarebeca_fullcalendar:
     resource: "@FullCalendarBundle/Resources/config/routing.yml"
+
+mgilet_notifications:
+    resource: "@MgiletNotificationBundle/Controller/"
+    prefix: /notifications

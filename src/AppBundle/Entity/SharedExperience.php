@@ -31,7 +31,7 @@ class SharedExperience
     /**
      * @var string
      *
-     * @ORM\Column(name="Description", type="string", length=255)
+     * @ORM\Column(name="Description", type="string", length=2024)
      */
     private $description;
 
@@ -48,7 +48,8 @@ class SharedExperience
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="User")
      * @ORM\JoinColumn(name="User", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $User;
+
+    private $user;
 
 
     /**
@@ -109,6 +110,12 @@ class SharedExperience
         return $this->description;
     }
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Theme", inversedBy="sharedExperience", cascade="persist")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $theme;
     /**
      * Set likes
      *
@@ -156,5 +163,28 @@ class SharedExperience
     {
         return $this->user;
     }
+    /**
+     * Get Theme
+     *
+     * @return Theme
+     */
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+    /**
+     * Set Theme
+     *
+     * @param Theme $theme
+     *
+     * @return Theme
+     */
+    public function setTheme(Theme $theme)
+    {
+        $this->theme = $theme;
+        return $this->theme;
+    }
+
+
 }
 

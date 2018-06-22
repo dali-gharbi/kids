@@ -21,7 +21,7 @@
     ======================================================= -->
 </head>
 
-<body>
+<body  background="{{ asset('tay.jpg') }}">
 <header>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="navigation">
@@ -51,8 +51,10 @@
                                                        class="{% block link4State %}  {% endblock %}">Portfolio</a></li>
                             <li role="presentation"><a href="blog.html" class="{% block link5State %}  {% endblock %}">Blog</a>
                             </li>
-                            <li role="presentation"><a href="contact.html"
-                                                       class="{% block link6State %}  {% endblock %}">Contact</a></li>
+                            {#<li role="presentation"><a href="{{ path('sharedexperience') }}"#}
+                                                       {#class="{% block link6State %}  {% endblock %}">Forum</a></li>#}
+                            <li role="presentation"><a href="{{ path('themes') }}"
+                                                       class="{% block link6State %}  {% endblock %}">Forum</a></li>
                             <li role="presentation"><a href="{{ path('babysitter') }}"
                                                       class="{% block link7State %}  {% endblock %}">babysitter</a></li>
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED" ) %}

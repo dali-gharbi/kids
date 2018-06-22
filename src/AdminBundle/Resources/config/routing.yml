@@ -13,3 +13,15 @@ Admin_Event:
 app_pediatrician:
     resource: "@AdminBundle/Controller/PediatricianController.php"
     type:     annotation
+
+app_Experience:
+    resource: "@AdminBundle/Controller/SharedExperienceController.php"
+    type:     annotation
+
+app_CommentSharedExperience:
+    resource: "@AdminBundle/Controller/CommentSharedExperienceController.php"
+    type:     annotation
+
+app_theme:
+    resource: "@AdminBundle/Controller/ThemeController.php"
+    type:     annotation

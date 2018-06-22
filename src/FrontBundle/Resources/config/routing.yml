@@ -10,3 +10,15 @@ app_babysitter:
     resource: "@FrontBundle/Controller/BabySitterController.php"
     type:     annotation
 
+Front_theme:
+    resource: "@FrontBundle/Controller/ThemeController.php"
+    type:     annotation
+
+app_shared:
+    resource: "@FrontBundle/Controller/SharedExperienceController.php"
+    type:     annotation
+
+app_CommentSharedExperience:
+    resource: "@FrontBundle/Controller/CommentSharedExperienceController.php"
+    type:     annotation
+
