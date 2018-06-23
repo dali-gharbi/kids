@@ -14,6 +14,11 @@ services:
             tags:
                 - { name: kernel.event_subscriber }
 
+    app_bundle.service.listener:
+        class: AppBundle\Listener\LoadDataListener
+        tags:
+         - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadData }
+
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services

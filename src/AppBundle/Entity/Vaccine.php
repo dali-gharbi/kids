@@ -21,6 +21,15 @@ class Vaccine
      */
     private $id;
 
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="price", type="float")
+     */
+    private $price;
+
+
     /**
      * @var string
      *
@@ -29,19 +38,27 @@ class Vaccine
     private $name;
 
     /**
-     * @var \DateTime
+     * @var int
      *
-     * @ORM\Column(name="Date", type="date")
+     * @ORM\Column(name="Age", type="integer")
      */
-    private $date;
+    private $age;
+
 
     /**
-     * Inversed side
-     * @var int
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="User")
-     * @ORM\JoinColumn(name="User", referencedColumnName="id", onDelete="CASCADE")
+     * @var string
+     *
+     * @ORM\Column(name="Description", type="string", length=2255)
      */
-    private $User;
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Effetnegatif", type="string", length=2255)
+     */
+    private $effetnegatif ;
+
 
     /**
      * Inversed side
@@ -87,60 +104,80 @@ class Vaccine
     }
 
     /**
-     * Set date
+     * Set age
      *
-     * @param \DateTime $date
+     * @param integer $age
      *
      * @return Vaccine
      */
-    public function setDate($date)
+    public function setAge($age)
     {
-        $this->date = $date;
+        $this->age = $age;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get name
      *
-     * @return \DateTime
+     * @return integer
      */
-    public function getDate()
+    public function getAge()
     {
-        return $this->date;
+        return $this->age;
     }
 
+
     /**
-     * Set user
+     * Set description
      *
-     * @param string $User
+     * @param string $description
      *
      * @return Vaccine
      */
-    public function setUser($User)
+    public function setDescription($description)
     {
-        $this->User = $User;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get User
+     * Get description
      *
      * @return string
      */
-    public function getUser()
+    public function getDescription()
     {
-        return $this->User;
+        return $this->description;
     }
 
     /**
-     * Set Address
+     * Set effetnegatif
      *
-     * @param string $Address
+     * @param string $name
      *
-     * @return Address
+     * @return Vaccine
      */
+    public function setEffetnegatif($effetnegatif)
+    {
+        $this->effetnegatif = $effetnegatif;
+
+        return $this;
+    }
+
+    /**
+     * Get effetnegatif
+     *
+     * @return string
+     */
+    public function getEffetnegatif()
+    {
+        return $this->effetnegatif;
+    }
+
+
+
     public function setAddress($Address)
     {
         $this->Address = $Address;
@@ -157,5 +194,32 @@ class Vaccine
     {
         return $this->Address;
     }
+
+
+    /**
+     * Set price
+     *
+     * @param float $price
+     *
+     * @return Vaccine
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+
 }
 

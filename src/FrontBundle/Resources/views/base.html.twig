@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('bundles/front/css/animate.css')}}">
     <link href="{{ asset('bundles/front/css/prettyPhoto.css')}}" rel="stylesheet">
     <link href="{{ asset('bundles/front/css/style.css')}}" rel="stylesheet" />
+    {% block stylesheet %}
+    {% endblock %}
     <!-- =======================================================
       Theme Name: Company
       Theme URL: https://bootstrapmade.com/company-free-html-bootstrap-template/
@@ -21,7 +23,7 @@
     ======================================================= -->
 </head>
 
-<body  background="{{ asset('tay.jpg') }}">
+<body>
 <header>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="navigation">
@@ -43,14 +45,23 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation"><a href="{{ path('front_homepage') }}"
                                                        class="{% block link1State %}  {% endblock %}">Home</a></li>
-                            <li role="presentation"><a href="about.html" class="{% block link2State %}  {% endblock %}">About
-                                    Us</a></li>
-                            <li role="presentation"><a href="services.html"
-                                                       class="{% block link3State %}  {% endblock %}">Services</a></li>
-                            <li role="presentation"><a href="portfolio.html"
-                                                       class="{% block link4State %}  {% endblock %}">Portfolio</a></li>
-                            <li role="presentation"><a href="blog.html" class="{% block link5State %}  {% endblock %}">Blog</a>
+
+                            <li role="presentation">
+                                    <a href="{{ path('vaccine') }}" class="{% block link4State %}  {% endblock %}">vaccines</a>
+
+
                             </li>
+
+                            <li role="presentation">
+                                <a href="{{ path('discutea_forum_homepage') }}" class="{% block link55State %}  {% endblock %}">forum</a>
+
+
+                            </li>
+
+
+                            <li role="presentation"><a href="{{ path('front_pediatre') }}" class="{% block link2State %}  {% endblock %}">
+                             Pediatrician</a></li>
+
                             {#<li role="presentation"><a href="{{ path('sharedexperience') }}"#}
                                                        {#class="{% block link6State %}  {% endblock %}">Forum</a></li>#}
                             <li role="presentation"><a href="{{ path('themes') }}"

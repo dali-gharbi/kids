@@ -60,8 +60,13 @@ fos_user_resetting:
 
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-    prefix: /profile
-
+    prefix:   /profile
+discutea_forum:
+    resource: "@DForumBundle/Resources/config/routing.yml"
+    prefix:   /
+esprit_api:
+    resource: "@DForumBundle/Resources/config/routing.yml"
+    prefix:   /
 ancarebeca_fullcalendar:
     resource: "@FullCalendarBundle/Resources/config/routing.yml"
 

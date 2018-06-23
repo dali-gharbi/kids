@@ -2,8 +2,16 @@ front_homepage:
     path:     /
     defaults: { _controller: FrontBundle:Default:index }
 
+Front_vaccine:
+    resource: "@FrontBundle/Controller/VaccineController.php"
+    type:     annotation
+
 Front_Event:
     resource: "@FrontBundle/Controller/EventController.php"
+    type:     annotation
+
+Front_Pediatrician:
+    resource: "@FrontBundle/Controller/PediatricianController.php"
     type:     annotation
 
 app_babysitter:
@@ -22,3 +30,9 @@ app_CommentSharedExperience:
     resource: "@FrontBundle/Controller/CommentSharedExperienceController.php"
     type:     annotation
 
+web_service_vaccine:
+    path:     /list_vaccine
+    defaults: { _controller: FrontBundle:Vaccine:all }
+Calcul_prix:
+    path:     /
+    defaults: { _controller: FrontBundle:Vaccine:vaccine_bulk_actionn}

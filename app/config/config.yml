@@ -61,9 +61,39 @@ doctrine:
         #path: '%database_path%'
 
     orm:
-        auto_generate_proxy_classes: '%kernel.debug%'
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+            auto_generate_proxy_classes: "%kernel.debug%"
+            naming_strategy: doctrine.orm.naming_strategy.underscore
+            auto_mapping: true
+            resolve_target_entities:
+                Symfony\Component\Security\Core\User\UserInterface: AppBundle\Entity\User
+
+# Stof Doctrine Extensions
+stof_doctrine_extensions:
+        orm:
+            default:
+                sluggable: true
+
+# Configuration for knp paginator: don't forget to customize page_name
+knp_paginator:
+        page_range: 3
+        default_options:
+            page_name: page1
+            sort_field_name: sort
+            sort_direction_name: direction
+            distinct: true
+
+# Configuration for discutea forum
+discutea_forum:
+        preview:
+            enabled: true
+        knp_paginator:
+            page_name: page2  #see knp_paginator.default_option.page_name
+            topics:
+                enabled: true
+                per_page: 10
+            posts:
+                enabled: true
+                per_page: 10
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -117,3 +147,26 @@ nomaya_social:
     links:
         facebook:            "https://www.facebook.com/poweress/"
     theme:                  'default' # optional
+social_post:
+    publish_on: [facebook, linkedin, twitter]         # List which Social networks you will be publishing to and configure your access to them as shown below
+    providers:
+        facebook:
+            app_id: "YOUR-FACEBOOK-APP-ID"
+            app_secret: "YOUR-FACEBOOK-APP-SECRET"
+            default_access_token: "YOUR-FACEBOOK-NON-EXPIRING-PAGE-ACCESS-TOKEN"
+            page_id: "YOUR-FACEBOOK-PAGE-ID"
+            enable_beta_mode: true
+            default_graph_version: "v2.8"             # Optional, also supports "mcrypt" and "urandom". Default uses the latest graph version.
+            persistent_data_handler: "memory"         # Optional, also supports "session". Default is "memory".
+            pseudo_random_string_generator: "openssl" # Optional, also supports "mcrypt" and "urandom". Default is "openssl".
+            http_client_handler: "curl"               # Optional, also supports "stream" and "guzzle". Default is "curl".
+        linkedin:
+            client_id: "YOUR-LINKEDIN-APP-CLIENT-ID"
+            client_secret: "YOUR-LINKEDIN-APP-CLIENT-SECRET"
+            access_token: "YOUR-LINKEDIN-60-DAYS-LONG-USER-ACCESS-TOKEN"
+            company_page_id: "YOUR-LINKEDIN-COMPANY-PAGE-ID"
+        twitter:
+            consumer_key: "YOUR-TWITTER-APP-CONSUMER-KEY"
+            consumer_secret: "YOUR-TWITTER-APP-CONSUMER-SECRET"
+            access_token: "YOUR-TWITTER-ACCESS-TOKEN"
+            access_token_secret: "YOUR-TWITTER-ACCESS-TOKEN-SECRET"
