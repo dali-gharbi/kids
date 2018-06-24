@@ -5,6 +5,8 @@ namespace AdminBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PediatricianType extends AbstractType
@@ -18,7 +20,8 @@ class PediatricianType extends AbstractType
         $builder
             ->add('name')
             ->add('price')
-            ->add('tel')
+            ->add('tel',TelType::class)
+            ->add('email',EmailType::class)
             ->add('Address', EntityType::class, array(
                 'class' => 'AppBundle\Entity\Address',
                 'choice_label' => 'rue',

@@ -104,6 +104,7 @@
                             <th>{{macros.th_sortable('name',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'pediatre')}}</th>
                             <th>{{macros.th_sortable('price',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'pediatre')}}</th>
                             <th>{{macros.th_sortable('tel',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'pediatre')}}</th>
+                        <th>{{macros.th_sortable('email',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'pediatre')}}</th>
 
                         <th>rue</th>
                             <th>speciality</th>
@@ -120,6 +121,7 @@
                         <td>{{ pediatrician.name }}</td>
                         <td>{{ pediatrician.price }}</td>
                         <td>{{ pediatrician.tel }}</td>
+                        <td>{{ pediatrician.email }}</td>
                         <td>{{ pediatrician.address.rue }}</td>
                         {% if pediatrician.speciality %}
                         <td>{{ pediatrician.speciality.name }}</td>

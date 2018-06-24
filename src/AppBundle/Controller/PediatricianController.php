@@ -38,4 +38,17 @@ class PediatricianController extends Controller
         $formatted = $serializer->normalize($events);
         return new JsonResponse($formatted);
     }
+
+
+
+
+
+
+    
+    private function getUserImage () {
+        $number = rand ( 1, 99 );
+        $sex = ['women','men'];
+        return'http://api.randomuser.me/portraits/'.array_rand($sex).'/'.$number.'.jpg';
+    }
+
 }

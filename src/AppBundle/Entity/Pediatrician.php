@@ -35,6 +35,13 @@ class Pediatrician
     /**
      * @var string
      *
+     * @ORM\Column(name="Email", type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="Tel", type="string", length=255)
      */
     private $tel;
@@ -113,6 +120,30 @@ class Pediatrician
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Pediatrician
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     /**

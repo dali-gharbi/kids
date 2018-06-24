@@ -31,6 +31,7 @@ class LoadPediatricianData
     {
         $pediatre = new Pediatrician();
         $pediatre->setName('Dr Mostfa Hamdi');
+        $pediatre->setEmail('shanks.dali@gmail.com');
         $adrs = new Address();
         $adrs->setRue('test');
         $adrs->setLongitude('36.8179854');
@@ -39,9 +40,7 @@ class LoadPediatricianData
         $pediatre->setAddress($adrs);
         $pediatre->setPrice(40);
         $pediatre->setTel(27429028);
-        $rating = new Rating();
-        $rating->setRate(5);
-        $rating->setDescription('yessser 5ayba');
+        $rating = $manager->getRepository(Rating::class)->findOneBy(array('rate'=> 4));
         $pediatre->setRating($rating);
         $speciality = $manager->getRepository(Speciality::class)->findOneBy(array('name'=> 'Pediatric Cardiology'));
         $pediatre->setSpeciality($speciality);
@@ -66,7 +65,7 @@ class LoadPediatricianData
      */
     public function getOrder()
     {
-        return 5;
+        return 6;
     }
 
 }

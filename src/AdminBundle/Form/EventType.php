@@ -3,8 +3,10 @@
 namespace AdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EventType extends AbstractType
@@ -18,7 +20,7 @@ class EventType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('tel')
+            ->add('tel',TelType::class)
             ->add('date')
             ->add('endDate')
             ->add('Establishment', EntityType::class, array(
