@@ -18,6 +18,7 @@ class EventType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
+            ->add('tel')
             ->add('date')
             ->add('Establishment', EntityType::class, array(
                 'class' => 'AppBundle\Entity\Establishment',

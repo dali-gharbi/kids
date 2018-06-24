@@ -23,11 +23,18 @@ class Event extends FullCalendarEvent
     private $id;
 
     /**
+ * @var string
+ *
+ * @ORM\Column(name="Name", type="string", length=255)
+ */
+    private $name;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="Name", type="string", length=255)
+     * @ORM\Column(name="Tel", type="string", length=255)
      */
-    private $name;
+    private $tel;
 
     /**
      * @var string
@@ -99,6 +106,30 @@ class Event extends FullCalendarEvent
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $tel
+     *
+     * @return Event
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    /**
+     * Get tel
+     *
+     * @return string
+     */
+    public function getTel()
+    {
+        return $this->tel;
     }
 
     /**

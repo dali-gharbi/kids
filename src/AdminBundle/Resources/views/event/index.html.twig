@@ -41,6 +41,7 @@
                  
                     <div class="col-md-6">{{ form_row(filterForm.description) }}</div>
 
+                    <div class="col-md-6">{{ form_row(filterForm.tel) }}</div>
                  
                     <div class="col-md-6">{{ form_row(filterForm.date) }}</div>
 
@@ -135,7 +136,8 @@
                             <th>{{macros.th_sortable('id',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>
                             <th>{{macros.th_sortable('name',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>
                             <th>{{macros.th_sortable('description',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>
-                            <th>{{macros.th_sortable('date',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>
+                        <th>{{macros.th_sortable('tel',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>
+                        <th>{{macros.th_sortable('date',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>
     
                        
                         <th width = "130px">List</th>
@@ -148,6 +150,7 @@
                         <td><a href="{{ path('AdminEvent_edit', { 'id': event.id }) }}">{{ event.id }}</a></td>
                         <td>{{ event.name }}</td>
                         <td>{{ event.description }}</td>
+                        <td>{{ event.tel }}</td>
                         <td>{%- if event.date %}{{ event.date|date('Y-m-d') }}{% endif %}</td>
     
                         <td class="actions">

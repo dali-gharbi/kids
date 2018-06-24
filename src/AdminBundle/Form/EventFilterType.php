@@ -17,6 +17,7 @@ class EventFilterType extends AbstractType
             ->add('id', Filters\NumberFilterType::class)
             ->add('name', Filters\TextFilterType::class)
             ->add('description', Filters\TextFilterType::class)
+            ->add('tel',Filters\TextFilterType::class )
             ->add('date', Filters\DateFilterType::class)
         
             ->add('Establishment', Filters\EntityFilterType::class, array(

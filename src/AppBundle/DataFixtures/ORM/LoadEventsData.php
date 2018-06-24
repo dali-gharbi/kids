@@ -31,12 +31,13 @@ class LoadEventsData
     {
         $event = new Event();
         $event->setName('3id él omm');
+        $event->setDescription('test test');
+        $event->setTel('24555666');
         $adrs = new Address();
         $adrs->setRue('test');
         $adrs->setLongitude('36.8179854');
         $adrs->setLatitude('10.1946025');
         $adrs->setGovernorate('tunis');
-        $event->setDescription('test test');
         $event->setDate(new \DateTime('2000-01-01'));
         $etab = new Establishment();
         $etab->setName('test');
