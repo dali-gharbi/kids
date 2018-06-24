@@ -30,6 +30,7 @@ class LoadUserData
         $user = $userManager->createUser();
         $user->setUsername('admin');
         $user->setUsernameCanonical('adm');
+        $user->setImage('https://avatars0.githubusercontent.com/u/9580152?s=460&v=4');
         $user->setEmail('admin@admin.com');
         $user->setPlainPassword('admin');
         $user->setEnabled(true);
