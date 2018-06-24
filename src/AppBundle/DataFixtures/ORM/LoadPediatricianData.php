@@ -4,6 +4,8 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Address;
 use AppBundle\Entity\Pediatrician;
+use AppBundle\Entity\Rating;
+use AppBundle\Entity\Speciality;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -37,8 +39,12 @@ class LoadPediatricianData
         $pediatre->setAddress($adrs);
         $pediatre->setPrice(40);
         $pediatre->setTel(27429028);
-
-        //$pediatre->setRating(1);
+        $rating = new Rating();
+        $rating->setRate(5);
+        $rating->setDescription('yessser 5ayba');
+        $pediatre->setRating($rating);
+        $speciality = $manager->getRepository(Speciality::class)->findOneBy(array('name'=> 'Pediatric Cardiology'));
+        $pediatre->setSpeciality($speciality);
         $manager->persist($pediatre);
 
 

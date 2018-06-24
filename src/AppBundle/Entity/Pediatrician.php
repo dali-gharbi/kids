@@ -69,7 +69,7 @@ class Pediatrician
     /**
      * Inversed side
      * @var int
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rating", inversedBy="Rating")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rating", inversedBy="Rating", cascade="persist")
      * @ORM\JoinColumn(name="Rating", referencedColumnName="id", onDelete="CASCADE")
      */
     private $rating;
