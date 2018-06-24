@@ -118,7 +118,7 @@ desired effect
 
                         <!-- Notifications Menu -->
 
-                        {{ render(controller('MgiletNotificationBundle:Notification:list', { 'notifiable': 3 })) }}
+                       {#  {{ render(controller('MgiletNotificationBundle:Notification:list', { 'notifiable': 3 })) }} #}
 
                         <!-- Tasks Menu -->
                         <li class="dropdown tasks-menu">
@@ -278,14 +278,27 @@ desired effect
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="{% block link3State %}  {% endblock %}"><a href="{{ path('pediatre') }}">Liste des pédiatres</a></li>
-                            <li class="{% block link4State %}  {% endblock %}"><a href="{{ path('pediatre_new') }}">Ajouter un pédiatre</a></li>
-                            <li class="{% block link5State %}  {% endblock %}"><a href="{{ path('speciality') }}">Liste
-                                    des spécialitées</a></li>
+                            <li class="{% block link3State %}  {% endblock %}"><a href="{{ path('pediatre') }}">Liste pediatrician</a></li>
+                            <li class="{% block link4State %}  {% endblock %}"><a href="{{ path('pediatre_new') }}">Add pediatrician</a></li>
+                            <li class="{% block link5State %}  {% endblock %}"><a href="{{ path('speciality') }}">List
+                                    speciality</a></li>
                         </ul>
 
                     </li>
-                    <li class="treeview {% block link7State %} {% endblock %}">
+                    <li class="treeview {% block link15State %} {% endblock %}">
+                        <a href="#"><i class="fa fa-link"></i> <span>Events</span>
+                            <span class="pull-right-container">
+                             <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                             <li class="{% block link16State %}  {% endblock %}"><a href="{{ path('AdminEvent') }}">List events</a></li>
+                            {#<li class="{% block link17State %}  {% endblock %}"><a href="{{ path('events_new') }}">Add un event</a></li>
+                            #}
+                        </ul>
+
+                    </li>
+                    <li class="treeview {% block link66State %} {% endblock %}">
                         <a href="#"><i class="fa fa-link"></i> <span>Forum</span>
                             <span class="pull-right-container">
                              <i class="fa fa-angle-left pull-right"></i>

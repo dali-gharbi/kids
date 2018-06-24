@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="{{ asset('bundles/fullcalendar/css/fullcalendar/fullcalendar.min.css') }}" />
 </head>
 <body>
+
 {% include '@FullCalendar/Calendar/calendar.html.twig' %}
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
@@ -23,7 +24,7 @@
             },
             eventSources: [
                 {
-                    url: '{{ path('event_show') }}',
+                    url: '{# {{ path('event_show') }}#}',
                     type: 'POST',
                     data: {},
                     error: function () {}

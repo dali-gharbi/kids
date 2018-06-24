@@ -29,7 +29,7 @@ class EventController extends Controller
         $em=$this->getDoctrine()->getManager();
         $events =$em->getRepository('AppBundle:Event')->findAll();
         $normalizer = new ObjectNormalizer();
-        $normalizer->setCircularReferenceLimit(2);
+        $normalizer->setCircularReferenceLimit(0);
 // Add Circular reference handler
         $normalizer->setCircularReferenceHandler(function ($object) {
             return $object->getId();

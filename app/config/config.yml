@@ -117,36 +117,36 @@ fos_user:
         form:
             type: AppBundle\Form\RegistrationType
 
-nomaya_social:
-    buttons:
-        facebook:
-            url:            null
-            locale:         "fr_FR"
-            send:           false
-            width:          500
-            showFaces:      true
-            layout:         "button_count"
-        twitter:
-            url:            null
-            locale:         "fr"
-            message:        "Je veux partager ça avec vous"
-            text:           "Tweet"
-            via:            "L'Equipe cartedevisitevirtuelle.fr"
-            tag:            "ttot"
-        googleplus:
-            url:            null
-            locale :        "fr"
-            size :          "medium"
-            annotation :    "bubble"
-            width :         300
-        linkedin:
-            url:            null
-            locale:         "fr_FR"
-            counter:        "right"
-
-    links:
-        facebook:            "https://www.facebook.com/poweress/"
-    theme:                  'default' # optional
+#nomaya_social:
+#    buttons:
+#        facebook:
+#            url:            null
+#            locale:         "fr_FR"
+#            send:           false
+#            width:          500
+#            showFaces:      true
+#            layout:         "button_count"
+#        twitter:
+#            url:            null
+#            locale:         "fr"
+#            message:        "Je veux partager ça avec vous"
+#            text:           "Tweet"
+#            via:            "L'Equipe cartedevisitevirtuelle.fr"
+#            tag:            "ttot"
+#        googleplus:
+#            url:            null
+#            locale :        "fr"
+#            size :          "medium"
+#            annotation :    "bubble"
+#            width :         300
+#        linkedin:
+#            url:            null
+#            locale:         "fr_FR"
+#            counter:        "right"
+#
+#    links:
+#        facebook:            "https://www.facebook.com/poweress/"
+#    theme:                  'default' # optional
 social_post:
     publish_on: [facebook, linkedin, twitter]         # List which Social networks you will be publishing to and configure your access to them as shown below
     providers:

@@ -14,5 +14,64 @@
     {% block link1State %} active {% endblock %}
 
     {% block body %}
-        test
+        <section class="content" >
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-aqua"><i class="ion ios-person"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Actif Users</span>
+                            <span class="info-box-number">{{ userCount }}<small>Users</small></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-red"><i class="ion ios-calendar"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Events</span>
+                            <span class="info-box-number">{{ eventCount }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+                <!-- fix for small devices only -->
+                <div class="clearfix visible-sm-block"></div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-green"><i class="ion ios-body"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Pediatricians</span>
+                            <span class="info-box-number">{{ pediatciciansCount }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+              <!--
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">New Members</span>
+                            <span class="info-box-number">2,000</span>
+                        </div>
+                    </div>
+                </div>
+                -->
+                <!-- /.col -->
+            </div>
+        </section>
     {% endblock %}

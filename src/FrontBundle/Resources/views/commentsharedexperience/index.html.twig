@@ -401,8 +401,9 @@
 
             <div class="col-md-12">
 
-                {{ socialButtons( { 'facebook': {'send':true,'url':path(app.request.attributes.get('_route'),
+              {# {{ socialButtons( { 'facebook': {'send':true,'url':path(app.request.attributes.get('_route'),
                     app.request.attributes.get('_route_params'))}} ) }}
+                    #}
                 <form method="POST" id="bulk_form" action="{{ path('commentsharedexperience_bulk_action') }} ">
                     <div class="comments-container">
 

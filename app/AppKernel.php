@@ -28,7 +28,7 @@ class AppKernel extends Kernel
             new Discutea\DForumBundle\DForumBundle(),
             new MartinGeorgiev\SocialPost\SocialPostBundle(),
             new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
-            new Nomaya\SocialBundle\NomayaSocialBundle(),
+            //new Nomaya\SocialBundle\NomayaSocialBundle(),
             new Mgilet\NotificationBundle\MgiletNotificationBundle(),
         ];
 
