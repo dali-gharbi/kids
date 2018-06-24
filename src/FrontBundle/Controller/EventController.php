@@ -27,21 +27,22 @@ class EventController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('AppBundle:Event')->createQueryBuilder('e');
+        //$em = $this->getDoctrine()->getManager();
+        //$queryBuilder = $em->getRepository('AppBundle:Event')->createQueryBuilder('e');
 
-        list($filterForm, $queryBuilder) = $this->filter($queryBuilder, $request);
-        list($events, $pagerHtml) = $this->paginator($queryBuilder, $request);
+       // list($filterForm, $queryBuilder) = $this->filter($queryBuilder, $request);
+       // list($events, $pagerHtml) = $this->paginator($queryBuilder, $request);
         
-        $totalOfRecordsString = $this->getTotalOfRecordsString($queryBuilder, $request);
+       // $totalOfRecordsString = $this->getTotalOfRecordsString($queryBuilder, $request);
 
-        return $this->render('@Front/event/index.html.twig', array(
-            'events' => $events,
-            'pagerHtml' => $pagerHtml,
-            'filterForm' => $filterForm->createView(),
-            'totalOfRecordsString' => $totalOfRecordsString,
+        return $this->render('@Front/event/index.html.twig');
+       // , array(
+       // 'events' => $events,
+       // 'pagerHtml' => $pagerHtml,
+       // 'filterForm' => $filterForm->createView(),
+       // 'totalOfRecordsString' => $totalOfRecordsString,
 
-        ));
+    //)
     }
 
     /**

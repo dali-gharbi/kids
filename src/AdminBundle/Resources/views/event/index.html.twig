@@ -138,8 +138,9 @@
                             <th>{{macros.th_sortable('description',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>
                         <th>{{macros.th_sortable('tel',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>
                         <th>{{macros.th_sortable('date',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>
-    
-                       
+                        <th>{{macros.th_sortable('endDate',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>
+
+
                         <th width = "130px">List</th>
                     </tr>
                 </thead>
@@ -152,7 +153,8 @@
                         <td>{{ event.description }}</td>
                         <td>{{ event.tel }}</td>
                         <td>{%- if event.date %}{{ event.date|date('Y-m-d') }}{% endif %}</td>
-    
+                        <td>{%- if event.endDate %}{{ event.endDate|date('Y-m-d') }}{% endif %}</td>
+
                         <td class="actions">
                             <a  onclick="return confirm('Are you sure!');" title="Delete" class="btn btn-danger btn-sm" href="{{ path('AdminEvent_by_id_delete', { 'id': event.id}) }}">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>

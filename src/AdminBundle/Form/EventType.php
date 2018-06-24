@@ -20,6 +20,7 @@ class EventType extends AbstractType
             ->add('description')
             ->add('tel')
             ->add('date')
+            ->add('endDate')
             ->add('Establishment', EntityType::class, array(
                 'class' => 'AppBundle\Entity\Establishment',
                 'choice_label' => 'name',

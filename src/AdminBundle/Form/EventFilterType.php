@@ -19,7 +19,9 @@ class EventFilterType extends AbstractType
             ->add('description', Filters\TextFilterType::class)
             ->add('tel',Filters\TextFilterType::class )
             ->add('date', Filters\DateFilterType::class)
-        
+            ->add('endDate', Filters\DateFilterType::class)
+
+
             ->add('Establishment', Filters\EntityFilterType::class, array(
                     'class' => 'AppBundle\Entity\Establishment',
                     'choice_label' => 'name',

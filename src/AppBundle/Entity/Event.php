@@ -51,6 +51,13 @@ class Event extends FullCalendarEvent
     private $date;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="EndDate", type="date")
+     */
+    private $endDate;
+
+    /**
      * Inversed side
      * @var int
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Establishment", inversedBy="events", cascade="persist")
@@ -179,6 +186,31 @@ class Event extends FullCalendarEvent
     {
         return $this->date;
     }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $endDate
+     *
+     * @return Event
+     */
+    public function setEndDate($endDate)
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    /**
+     * Get endDate
+     *
+     * @return \DateTime
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
 
     /**
      * Set etablishment

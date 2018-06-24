@@ -38,7 +38,8 @@ class LoadEventsData
         $adrs->setLongitude('36.8179854');
         $adrs->setLatitude('10.1946025');
         $adrs->setGovernorate('tunis');
-        $event->setDate(new \DateTime('2000-01-01'));
+        $event->setDate(new \DateTime('2018-06-24 09:00:00'));
+        $event->setEndDate(new \DateTime('2018-06-26 17:00:00'));
         $etab = new Establishment();
         $etab->setName('test');
         $etab->setDescription('testdesc');

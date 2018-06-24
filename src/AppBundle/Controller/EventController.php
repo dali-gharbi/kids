@@ -38,4 +38,33 @@ class EventController extends Controller
         $formatted = $serializer->normalize($events);
         return new JsonResponse($formatted);
     }
+
+    /**
+     * Lists all pediatrician entities.
+     *
+     * @Route("/calendar", name="api_events_all_calendar")
+     * @Method("POST")
+     */
+    public function EventsCalendarAction(Request $request)
+    {
+        $start = $request->get('start');
+        $end = $request->get('end');
+        $em=$this->getDoctrine()->getManager();
+        $events =$em->getRepository('AppBundle:Event')->getByDate(new \DateTime($start),new \DateTime($end));
+        $finalList = [];
+        foreach ($events as &$event) {
+            $finalList [] = Array ('title' => $event->getName() ,
+                                'start' => $event->getDate()->format("Y-m-d")."T00:00:00",
+                                'end' => $event->getEndDate()->format("Y-m-d")."T22:00:00");
+        }
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(0);
+// Add Circular reference handler
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->title;
+        });
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($finalList);
+        return new JsonResponse($formatted);
+    }
 }

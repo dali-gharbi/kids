@@ -18,13 +18,14 @@
                 right: 'month, basicWeek, basicDay,'
             },
             lazyFetching: true,
-            timeFormat: {
-                agenda: 'h:mmt',
-                '': 'h:mmt'
-            },
+            timeFormat: 'hh:mm:ss',
+            //timeFormat: {
+            //    agenda: 'hh:mm:ss',
+            //    '': 'hh:mm:ss'
+            //},
             eventSources: [
                 {
-                    url: '{# {{ path('event_show') }}#}',
+                    url: '../api/events/calendar',
                     type: 'POST',
                     data: {},
                     error: function () {}

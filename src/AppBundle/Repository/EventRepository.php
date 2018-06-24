@@ -10,4 +10,20 @@ namespace AppBundle\Repository;
  */
 class EventRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getByDate(\Datetime $date, \Datetime $endDate)
+    {
+        $from = new \DateTime($date->format("Y-m-d")." 00:00:00");
+        $to   = new \DateTime($endDate->format("Y-m-d")." 23:59:59");
+
+        $qb = $this->createQueryBuilder("e");
+        $qb
+            ->andWhere('e.date  > :from')->andWhere('e.endDate < :to')
+            ->setParameter('from', $from )
+            ->setParameter('to', $to)
+        ;
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
+    }
 }
