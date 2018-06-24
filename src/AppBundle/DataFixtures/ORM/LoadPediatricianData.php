@@ -36,6 +36,7 @@ class LoadPediatricianData
         $adrs->setGovernorate('tunis');
         $pediatre->setAddress($adrs);
         $pediatre->setPrice(40);
+        $pediatre->setTel(27429028);
 
         //$pediatre->setRating(1);
         $manager->persist($pediatre);

@@ -18,6 +18,7 @@ class PediatricianType extends AbstractType
         $builder
             ->add('name')
             ->add('price')
+            ->add('tel')
             ->add('Address', EntityType::class, array(
                 'class' => 'AppBundle\Entity\Address',
                 'choice_label' => 'rue',

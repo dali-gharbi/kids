@@ -32,6 +32,13 @@ class Pediatrician
      */
     private $name;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Tel", type="string", length=255)
+     */
+    private $tel;
+
    // /**
    //  * Inversed side
    //  * @var int
@@ -106,6 +113,30 @@ class Pediatrician
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Pediatrician
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getTel()
+    {
+        return $this->tel;
     }
 
     /**
