@@ -46,8 +46,8 @@ class Event extends FullCalendarEvent
     /**
      * Inversed side
      * @var int
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Establishment", inversedBy="Establishment")
-     * @ORM\JoinColumn(name="Establishment", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Establishment", inversedBy="events", cascade="persist")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="id", onDelete="CASCADE")
      */
     private $Establishment;
 

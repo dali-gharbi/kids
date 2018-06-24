@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * Establishment
@@ -12,6 +14,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Establishment
 {
+
+    public function __construct()
+    {
+        $this->events = new ArrayCollection();
+    }
+
     /**
      * @var int
      *
@@ -44,7 +52,7 @@ class Establishment
     /**
      * Inversed side
      * @var int
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Address", inversedBy="address")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Address", inversedBy="address", cascade="persist")
      * @ORM\JoinColumn(name="address", referencedColumnName="id", onDelete="CASCADE")
      */
     private $address;
@@ -59,11 +67,15 @@ class Establishment
     /**
      * Inversed side
      * @var int
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rating", inversedBy="Rating")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rating", inversedBy="Rating", cascade="persist")
      * @ORM\JoinColumn(name="Rating", referencedColumnName="id", onDelete="CASCADE")
      */
     private $rating;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Event", mappedBy="Establishment")
+     */
+    private $events;
 
     /**
      * Get id
@@ -174,7 +186,7 @@ class Establishment
     /**
      * Set rating
      *
-     * @param string $rating
+     * @param Rating $rating
      *
      * @return Establishment
      */
@@ -193,6 +205,14 @@ class Establishment
     public function getRating()
     {
         return $this->rating;
+    }
+
+    /**
+     * @return Collection|Event[]
+     */
+    public function getEvents()
+    {
+        return $this->events;
     }
 }
 

@@ -28,7 +28,13 @@ class EventController extends Controller
     {
         $em=$this->getDoctrine()->getManager();
         $events =$em->getRepository('AppBundle:Event')->findAll();
-        $serializer = new Serializer([new ObjectNormalizer()]);
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
+// Add Circular reference handler
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId();
+        });
+        $serializer = new Serializer([$normalizer]);
         $formatted = $serializer->normalize($events);
         return new JsonResponse($formatted);
     }
