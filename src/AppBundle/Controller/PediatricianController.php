@@ -27,9 +27,15 @@ class PediatricianController extends Controller
     public function ListAction()
     {
         $em=$this->getDoctrine()->getManager();
-        $pedaitricians =$em->getRepository('AppBundle:Pediatrician')->findAll();
-        $serializer = new Serializer([new ObjectNormalizer()]);
-        $formatted = $serializer->normalize($pedaitricians);
+        $events =$em->getRepository('AppBundle:Pediatrician')->findAll();
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(0);
+        // Add Circular reference handler
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId();
+        });
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($events);
         return new JsonResponse($formatted);
     }
 }

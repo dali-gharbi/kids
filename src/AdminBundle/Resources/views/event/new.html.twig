@@ -1,18 +1,23 @@
 {% extends '@Admin/base.html.twig' %}
-
 {% block title %}
-{{ parent() }} - New event
+    {{ parent() }} - New event
 {% endblock %}
 
-{% block body %}
+    {% block pageHeader %}
+        <a href="{{ path('pediatre_new') }}">New Event</a>
+    {% endblock %}
+        {% block pageDescription %}
+            list of events
+        {% endblock %}
+    {% block pageBreadcrumb %}
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="">Events List</li>
+        <li class="active">add Event</li>
+    {% endblock %}
+    {% block link5State %} active {% endblock %}
+    {% block link4State %} active {% endblock %}
 
-<div id="top" class="row">
-    <div class="page-header">
-        <h2>New event <span class="glyphicon glyphicon-file" aria-hidden="true"></span> </h2>
-    </div>
-</div>
-    
-    
+{% block body %}
     
 <div class="row">
     <div class="row">
