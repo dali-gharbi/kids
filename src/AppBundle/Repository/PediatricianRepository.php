@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class PediatricianRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function containName($name) {
+        $qb = $this->createQueryBuilder("e");
+        $qb
+            ->andWhere("e.name Like :name")
+            ->setParameter('name', '%'.$name.'%' )
+        ;
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
+    }
 }

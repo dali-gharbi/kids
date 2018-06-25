@@ -53,7 +53,9 @@ class EventController extends Controller
         $events =$em->getRepository('AppBundle:Event')->getByDate(new \DateTime($start),new \DateTime($end));
         $finalList = [];
         foreach ($events as &$event) {
-            $finalList [] = Array ('title' => $event->getName() ,
+            $finalList [] = Array (
+                                'id'=>$event->getId(),
+                                'title' => $event->getName() ,
                                 'start' => $event->getDate()->format("Y-m-d")."T00:00:00",
                                 'end' => $event->getEndDate()->format("Y-m-d")."T22:00:00");
         }
@@ -66,5 +68,25 @@ class EventController extends Controller
         $serializer = new Serializer([$normalizer]);
         $formatted = $serializer->normalize($finalList);
         return new JsonResponse($formatted);
+    }
+
+    /**
+     * Lists all pediatrician entities.
+     *
+     * @Route("/subscribe", name="api_event_subscribe")
+     * @Method("GET")
+     */
+    public function addToEventAction(Request $request)
+    {
+        if( $this->container->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) )
+        {
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+            $username = $user->getUsername();
+        }
+        $id = $request->get('id');
+        $em=$this->getDoctrine()->getManager();
+        echo $user->getId();
+        echo $id;
+        die();
     }
 }

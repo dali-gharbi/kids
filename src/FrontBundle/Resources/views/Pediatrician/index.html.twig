@@ -110,10 +110,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading c-list">
                         <span class="title">Pediatricians</span>
-                        <ul class="pull-right c-controls">
-                           {#  <li><a href="#cant-do-all-the-work-for-you" data-toggle="tooltip" data-placement="top" title="Add Contact"><i class="glyphicon glyphicon-plus"></i></a></li>
-                            <li><a href="#" class="hide-search" data-command="toggle-search" data-toggle="tooltip" data-placement="top" title="Toggle Search"><i class="fa fa-ellipsis-v"></i></a></li>
-                       #} </ul>
+                        <input type="search" placeholder="type a name" id="name-input" />
+                        <input type="button" value="search" id="name-btn" />
                     </div>
 
                     <div class="row" style="display: none;">
@@ -158,56 +156,62 @@
         </div>
     </div>
 </div>
+    <script src="{{ asset('bundles/front/js/jquery-2.1.1.min.js')}}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            $('#name-btn').click(function() {
+                var text = $('#name-input').val().toLowerCase();
+                $.ajax({
+                    type: 'GET',
+                    url: '../api/pediatricians/search?text='+text,
+                        //Routing.generate('api_pediatrician_search', {text: text}),
+                    //data: {text: text},
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(resultData) {
+                        if(resultData.pedaitricians) {
+                            console.log(resultData.pedaitricians);
+                            var str = ""
+                            for (i = 0; i < resultData.pedaitricians.length; i++) {
+                                var elem = resultData.pedaitricians[i];
+                                str = str +
+                                "<li class='list-group-item'>"+
+                                "<div class='col-xs-12 col-sm-3'>"+
+                                "<img src='"+resultData.images[i]+"' alt='Scott Stevens' class='img-responsive img-circle' />"+
+                                "</div>"+
+                                "<div class='col-xs-12 col-sm-9'>"+
+                                "<span class='name'>"+elem.name+"</span><br/>"+
+                                "<a target='_blank' href='https://www.google.com/maps/?q="+elem.address.longitude+","+ elem.address.latitude+"'>" +
+                                "<span class='glyphicon glyphicon-map-marker text-muted c-info' data-toggle='tooltip' title='"+ elem.address.rue +"'></span></a>"+
+                                "<span class='visible-xs'> <span class='text-muted'>5842 Hillcrest Rd</span><br/></span>"+
+                                "<a href='tel:"+ elem.tel +"' ><span class='glyphicon glyphicon-earphone text-muted c-info' data-toggle='tooltip' title='"+ elem.tel +"'></span></a>"+
+                                "<span class='visible-xs'> <span class='text-muted'>"+ elem.tel +"</span><br/></span>"+
+                                "<a href='mailto:"+ elem.email +"' ><span class='fa fa-comments text-muted c-info' data-toggle='tooltip' title='"+ elem.email +"'></span></a>"+
+                                "<span class='visible-xs'> <span class='text-muted'>"+ elem.email +"</span><br/></span>"+
+                                "<br/>"+
+                                "<span>Rating : </span>"+
+                                "<span class='glyphicon glyphicon-star text-muted c-info small " + (elem.rating.rate >= 1 ? 'active_star' :'') +"' data-toggle='tooltip' title='1'></span>"+
+                                "<span class='glyphicon glyphicon-star text-muted c-info small " + (elem.rating.rate >= 2 ? 'active_star' : '') +"' data-toggle='tooltip' title='2'></span>"+
+                                "<span class='glyphicon glyphicon-star text-muted c-info small " + (elem.rating.rate >= 3 ? 'active_star' : '') +"' data-toggle='tooltip' title='3'></span>"+
+                                "<span class='glyphicon glyphicon-star text-muted c-info small " + (elem.rating.rate >= 4 ? 'active_star' : '') +"' data-toggle='tooltip' title='4'></span>"+
+                                "<span class='glyphicon glyphicon-star text-muted c-info small " + (elem.rating.rate >= 5 ? 'active_star' : '') +"' data-toggle='tooltip' title='5'></span>"+
+                                    "</div>"+
+                                    "<div class='clearfix'></div>"+
+                                    "</li>";
+                            }
+                            $('#contact-list').html(str);
+                        }
+                        //console.log(resultData)
+                    }
+                });
+            });
+        });
+    </script>
+
 {% endblock %}
 
 
-{% block javascripts %}
-    <script>
-        $(function () {
-            /* BOOTSNIPP FULLSCREEN FIX */
-            if (window.location == window.parent.location) {
-                $('#back-to-bootsnipp').removeClass('hide');
-            }
-
-
-            $('[data-toggle="tooltip"]').tooltip();
-            $('#map_canvas').on('click', 'a', function(e){
-                e.preventDefault();
-                window.open($(this).attr('href'), '_blank');
-            });
-
-            $('#fullscreen').on('click', function(event) {
-                event.preventDefault();
-                window.parent.location = "http://bootsnipp.com/iframe/4l0k2";
-            });
-            $('a[href="#cant-do-all-the-work-for-you"]').on('click', function(event) {
-                event.preventDefault();
-                $('#cant-do-all-the-work-for-you').modal('show');
-            })
-
-            $('[data-command="toggle-search"]').on('click', function(event) {
-                event.preventDefault();
-                $(this).toggleClass('hide-search');
-
-                if ($(this).hasClass('hide-search')) {
-                    $('.c-search').closest('.row').slideUp(100);
-                }else{
-                    $('.c-search').closest('.row').slideDown(100);
-                }
-            })
-
-            $('#contact-list').searchable({
-                searchField: '#contact-list-search',
-                selector: 'li',
-                childSelector: '.col-xs-12',
-                show: function( elem ) {
-                    elem.slideDown(100);
-                },
-                hide: function( elem ) {
-                    elem.slideUp( 100 );
-                }
-            })
-        });
-
-    </script>
- {% endblock %}

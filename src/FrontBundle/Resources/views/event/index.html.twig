@@ -3,19 +3,59 @@
     <link rel="stylesheet" href="{{ asset('bundles/fullcalendar/css/fullcalendar/fullcalendar.min.css') }}" />
 </head>
 <body>
-
-{% include '@FullCalendar/Calendar/calendar.html.twig' %}
+    <div id="calendar-holder" style="max-width: 900px; margin: 40px auto;"></div>
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     {#  <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.default-settings.js') }}"></script> #}
 
 <script>$(function () {
+        function subscribe (calEvent) {
+            swal({
+                title: "Subscribe to "+ calEvent.title,
+                text: "Are you sure ?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: false,
+            })
+                .then(function (willDelete) {
+                    if (willDelete) {
+                        $.ajax({
+                            type: 'GET',
+                            url: '../api/events/subscribe?id='+calEvent.id,
+                            //Routing.generate('api_pediatrician_search', {text: text}),
+                            //data: {text: text},
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function(resultData) {
+                                swal("Added to this event", {
+                                    icon: "success",
+                                });
+                            }
+                        });
+                    } else {
+                        swal("Canceled");
+                    }
+                });
+        }
+
         $('#calendar-holder').fullCalendar({
             header: {
                 left: 'prev, next',
                 center: 'title',
                 right: 'month, basicWeek, basicDay,'
+            },
+            eventClick: function(calEvent, jsEvent, view) {
+                subscribe(calEvent);
+                //alert('Event: ' + calEvent.title);
+                //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                //alert('View: ' + view.name);
+
+                // change the border color just for fun
+                $(this).css('border-color', 'red');
+
             },
             lazyFetching: true,
             timeFormat: 'hh:mm:ss',

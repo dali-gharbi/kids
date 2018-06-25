@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
             //new Nomaya\SocialBundle\NomayaSocialBundle(),
             new Mgilet\NotificationBundle\MgiletNotificationBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

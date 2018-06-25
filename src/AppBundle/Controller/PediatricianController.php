@@ -42,6 +42,40 @@ class PediatricianController extends Controller
     /**
      * Lists all pediatrician entities.
      *
+     * @Route("/search", name="api_pediatrician_search")
+     * @Method("GET")
+     */
+    public function searchPediatreAction(Request $request)
+    {
+        $text = $request->get('text');
+        $em=$this->getDoctrine()->getManager();
+        if($text != '') {
+            $pedaitricians =$em->getRepository('AppBundle:Pediatrician')->containName($text);
+        } else {
+            $pedaitricians =$em->getRepository('AppBundle:Pediatrician')->findAll();
+        }
+        $images = [];
+        foreach ($pedaitricians as $ped) {
+            $images [] = $this->getUserImage();
+        }
+        $result = array(
+            'pedaitricians'=>$pedaitricians,
+            'images' =>$images
+        );
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(0);
+        // Add Circular reference handler
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId();
+        });
+        $serializer = new Serializer([$normalizer]);
+        $formatted = $serializer->normalize($result);
+        return new JsonResponse($formatted);
+    }
+
+    /**
+     * Lists all pediatrician entities.
+     *
      * @Route("/stats", name="api_count_statas")
      * @Method("GET")
      */
@@ -73,8 +107,9 @@ class PediatricianController extends Controller
 
     private function getUserImage () {
         $number = rand ( 1, 99 );
-        $sex = ['women','men'];
-        return'http://api.randomuser.me/portraits/'.array_rand($sex).'/'.$number.'.jpg';
+        //'women',
+        $sex = ['men'];
+        return'http://api.randomuser.me/portraits/'.$sex[array_rand($sex)].'/'.$number.'.jpg';
     }
 
 }
