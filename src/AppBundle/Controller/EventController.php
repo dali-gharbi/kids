@@ -84,9 +84,12 @@ class EventController extends Controller
             $username = $user->getUsername();
         }
         $id = $request->get('id');
-        $em=$this->getDoctrine()->getManager();
+        $em =$this->getDoctrine()->getManager();
+        $event = $em->getRepository('AppBundle:Event')->find($id);
+        $user =$em->getRepository('AppBundle:User')->find($user->getId());
+        $user->AddEvent($event);
+        $em->flush();
         echo $user->getId();
-        echo $id;
         die();
     }
 }
