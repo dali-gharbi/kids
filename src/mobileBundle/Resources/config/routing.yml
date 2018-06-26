@@ -1,0 +1,15 @@
+mobile_homepage:
+    path:     /
+    defaults: { _controller: mobileBundle:Default:index }
+
+find_all_mobile:
+    path: /findall
+    defaults: { _controller: mobileBundle:Forum:findall }
+
+find_forums_mobile:
+    path: /findForums
+    defaults: { _controller: mobileBundle:Forum:findallExprience }
+
+find_forums_Comment_mobile:
+    path: /findCommentForums
+    defaults: { _controller: mobileBundle:Forum:findallCommentExprience }

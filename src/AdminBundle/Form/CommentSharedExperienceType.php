@@ -16,12 +16,17 @@ class CommentSharedExperienceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('discription')
-            ->add('likes')
+            ->add('sharedExperience', EntityType::class, array(
+                'class' => 'AppBundle\Entity\SharedExperience',
+                'choice_label' => 'title',
+                'placeholder' => 'Please choose',
+                'empty_data' => null,
+                'required' => true
 
-        ;
+            ))
+            ->add('discription');
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

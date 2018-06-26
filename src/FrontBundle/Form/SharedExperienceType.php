@@ -19,7 +19,6 @@ class SharedExperienceType extends AbstractType
 
             ->add('title')
             ->add('description')
-            ->add('likes')
         ;
     }
     

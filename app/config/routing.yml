@@ -1,3 +1,7 @@
+mobile:
+    resource: "@mobileBundle/Resources/config/routing.yml"
+    prefix:   /
+
 Admin_comment_shared_experience:
     resource: "@AdminBundle/Controller/CommentSharedExperienceController.php"
     type:     annotation
@@ -49,6 +53,10 @@ fos_user_security:
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
     prefix: /profile
+
+;obile:
+    resource: "@mobileBundle/Resources/config/routing.yml"
+    prefix: /mobile
 
 fos_user_register:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"

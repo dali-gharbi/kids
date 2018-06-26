@@ -45,7 +45,7 @@ class User extends BaseUser implements NotifiableInterface
     /**
      * @var string
      * @Assert\Image()
-     * @ORM\Column(name="image", type="string", length=255)
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
 

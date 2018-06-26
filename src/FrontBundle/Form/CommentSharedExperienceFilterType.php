@@ -25,7 +25,7 @@ class CommentSharedExperienceFilterType extends AbstractType
             ->add('user', Filters\EntityFilterType::class, array(
                     'class' => 'AppBundle\Entity\User',
                     'choice_label' => 'id',
-            )) 
+            ))
         ;
         $builder->setMethod("GET");
 

@@ -8,6 +8,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     {% block stylesheets %}
+
         <link rel="stylesheet"
               href="{{ asset('bundles/Admin/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
         <!-- Font Awesome -->
@@ -118,7 +119,7 @@ desired effect
 
                         <!-- Notifications Menu -->
 
-                       {#  {{ render(controller('MgiletNotificationBundle:Notification:list', { 'notifiable': 3 })) }} #}
+                         {{ render(controller('MgiletNotificationBundle:Notification:list', { 'notifiable': 3 })) }}
 
                         <!-- Tasks Menu -->
                         <li class="dropdown tasks-menu">
@@ -296,23 +297,22 @@ desired effect
                             <li class="{% block link17State %}  {% endblock %}"><a href="{{ path('AdminEvent_new') }}">Add un event</a></li>
 
                         </ul>
-
                     </li>
+                    {#Start_Ekram Mosteghanemi#}
                     <li class="treeview {% block link66State %} {% endblock %}">
                         <a href="#"><i class="fa fa-link"></i> <span>Forum</span>
                             <span class="pull-right-container">
-                             <i class="fa fa-angle-left pull-right"></i>
+                                <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="{% block linkExperienceState %}  {% endblock %}"><a href="{{ path('theme') }}"><i class="fa fa-link"></i> <span>Liste des thémes</span></a></li>
-                            <li class="{% block linkExperienceStateGest %}  {% endblock %}"><a href="{{ path('sharedexperiences') }}"><i class="fa fa-link"></i> <span>Gestion Forum</span></a></li>
-                            <li class="{% block linkExperienceStateCommentaire %}  {% endblock %}"><a href="{{ path('commentsharedexperience') }}"><i class="fa fa-link"></i> <span>Gestion Forum</span></a></li>
-
-
+                            <li class="{% block linkExperienceState %}  {% endblock %}"><a href="{{ path('theme') }}"><i class="fa fa-picture-o"></i> <span>
+                                list of themes</span></a></li>
+                            <li class="{% block linkExperienceStateGest %}  {% endblock %}"><a href="{{ path('sharedexperiences') }}"><i class="fa fa-book"></i> <span>List Forum</span></a></li>
+                            <li class="{% block linkExperienceStateCommentaire %}  {% endblock %}"><a href="{{ path('commentsharedexperience') }}"><i class="fa fa-comments-o"></i> <span>Management Comment</span></a></li>
                         </ul>
-
                     </li>
+                    {#End_Ekram Mosteghanemi#}
                     <li class="treeview {% block link7State %} {% endblock %}">
                         <a href="#"><i class="fa fa-link"></i> <span>Vaccine</span>
                             <span class="pull-right-container">
@@ -324,7 +324,7 @@ desired effect
                             <li class="{% block link9State %}  {% endblock %}"><a href="{{ path('vaccine_new') }}">Ajouter vaccin</a></li>
                         </ul>
                     </li>
-                    <li class="treeview {% block link10State %} {% endblock %}">
+                    {#<li class="treeview {% block link10State %} {% endblock %}">
                         <a href="#"><i class="fa fa-link"></i> <span>Forum</span>
                             <span class="pull-right-container">
                              <i class="fa fa-angle-left pull-right"></i>
@@ -334,7 +334,7 @@ desired effect
                             <li class="{% block link11State %}  {% endblock %}"><a href="{{ path('discutea_forum_create_category') }}">create category</a></li>
                             <li class="{% block link13State %}  {% endblock %}"><a href="{{ path('discutea_forum_admin_dashboard') }}">admin dashboard</a></li>
                         </ul>
-                    </li>
+                    </li>#}
                 </ul>
             {% endblock %}
             <!-- /.sidebar-menu -->

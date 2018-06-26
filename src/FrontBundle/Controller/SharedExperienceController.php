@@ -188,7 +188,6 @@ class SharedExperienceController extends Controller
      */
     public function newAction(Request $request, $theme)
     {
-
         $sharedExperience = new SharedExperience();
         $form = $this->createForm('FrontBundle\Form\SharedExperienceType', $sharedExperience);
         $form->handleRequest($request);
@@ -198,6 +197,7 @@ class SharedExperienceController extends Controller
             $theme_id = $em->getRepository('AppBundle:Theme')->find($theme);
             $sharedExperience->setTheme($theme_id);
             $sharedExperience->setUser($this->getUser());
+            $sharedExperience->setLikes(0);
             $em->persist($sharedExperience);
             $em->flush();
 
@@ -205,7 +205,7 @@ class SharedExperienceController extends Controller
             $this->get('session')->getFlashBag()->add('success', "<a href='$editLink'>New sharedExperience was created successfully.</a>");
 
             $nextAction = $request->get('submit') == 'save' ? 'sharedexperience' : 'sharedexperience_new';
-            return $this->redirectToRoute($nextAction, ['theme' => $theme]);
+            return $this->redirectToRoute($nextAction, ['id' => $theme]);
         }
         return $this->render('@Front/sharedexperience/new.html.twig', array(
             'sharedExperience' => $sharedExperience,
@@ -352,5 +352,18 @@ class SharedExperienceController extends Controller
         return $this->redirect($this->generateUrl('sharedexperience'));
     }
 
-
+    /**
+     * Lists all CommentSharedExperience entities.
+     *
+     * @Route("/{id}/like/{shared}", name="commentsharedexperienceLike")
+     * @Method("GET")
+     */
+    public function likeAction(Request $request,$id,$shared){
+        $em = $this->getDoctrine()->getManager();
+        $comment = $em->getRepository('AppBundle:CommentSharedExperience')->find($id);
+        $comment->setLikes($comment->getLikes()+1);
+        $em->persist($comment);
+        $em->flush();
+        return $this->redirectToRoute('commentsharedexperiences',['id'=>$shared]);
+    }
 }

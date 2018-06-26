@@ -26,15 +26,6 @@ class SharedExperienceType extends AbstractType
             ))
             ->add('title')
             ->add('description',TextareaType::class)
-            ->add('likes')
-            ->add('User', EntityType::class, array(
-                'class' => 'AppBundle\Entity\User',
-                'choice_label' => 'id',
-                'placeholder' => 'Please choose',
-                'empty_data' => null,
-                'required' => false
- 
-            ))
 
         ;
     }

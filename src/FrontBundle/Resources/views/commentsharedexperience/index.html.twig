@@ -327,7 +327,6 @@
             </div>
             <!-- END FILTERING -->
 
-
             <div class="col-md-3 pull-left">
 
                 <!-- PAGE SIZE -->
@@ -359,19 +358,6 @@
 
             </div>
 
-            <div class="col-md-3">
-
-                <a class="btn btn-primary h3 pull-right"
-                   href="{{ path('commentsharedexperience_new',{'id':sharedExperience.id}) }}"
-                   style="margin-bottom:10px">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New
-                </a>
-                <a class="btn dropdown-toggle pull-right h3" data-toggle="collapse" data-target="#filters">
-                    Filter
-                    <span class="caret"></span>
-                </a>
-            </div>
-
 
             <div class="col-md-12">
                 {%- if form_errors(filterForm) %}
@@ -382,7 +368,6 @@
             </div>
 
         </div> <!-- /#top -->
-
 
         <div class="row">
             <div class="col-md-12">
@@ -401,9 +386,8 @@
 
             <div class="col-md-12">
 
-              {# {{ socialButtons( { 'facebook': {'send':true,'url':path(app.request.attributes.get('_route'),
-                    app.request.attributes.get('_route_params'))}} ) }}
-                    #}
+                {#{{ socialButtons() }}#}
+
                 <form method="POST" id="bulk_form" action="{{ path('commentsharedexperience_bulk_action') }} ">
                     <div class="comments-container">
 
@@ -419,12 +403,14 @@
                                     <div class="comment-box">
                                         <div class="comment-head">
                                             <h6 class="comment-name by-author"><a
-                                                        href="http://creaticode.com/blog">{{ sharedExperience.title }}</a>
+                                                        href="http://creaticode.com/blog">{{ sharedExperience.user.username }}</a>
                                             </h6>
                                             <span></span>
                                             <i class="fa fa-reply"></i>
                                             <i class="fa fa-heart"></i>
                                         </div>
+                                        <div class="comment-content">
+                                            <b>{{ sharedExperience.title }}</b></div>
                                         <div class="comment-content">
                                             {{ sharedExperience.description }}</div>
                                     </div>
@@ -445,11 +431,26 @@
                                                                 href="http://creaticode.com/blog">{{ commentSharedExperience.user.username }}</a>
                                                     </h6>
                                                     <span></span>
-                                                    <i class="fa fa-reply"></i>
                                                     <a href="{{ path('commentsharedexperiencesLike', {'id': commentSharedExperience.id , 'shared': sharedExperience.id}) }}">
                                                         <i class="fa fa-heart"></i>
                                                     </a>
                                                     <i>{{ commentSharedExperience.likes }} likes</i>
+                                                    {% if commentSharedExperience.user.id == app.user.id %}
+                                                        <i><a href="{{ path('deleteComment', {'shared': sharedExperience.id, 'id': commentSharedExperience.id}) }}"><img
+                                                                        style="width: 5%;    float: right;"
+                                                                        src="http://files.softicons.com/download/application-icons/mac-os-apps-icons-4-by-hamza-saleem/png/512x512/Trash%20Full.png"/></a>
+                                                            <a href="{{ path('commentsharedexperience_editcomment', {'id':commentSharedExperience.id,'shared':sharedExperience.id }) }}">
+                                                                <img style="width: 5%;    float: right;"
+                                                                     src="https://png.icons8.com/metro/1600/edit.png"/></a></i>
+                                                    {% elseif is_granted("ROLE_SUPER_ADMIN") %}
+                                                        <i><a href="{{ path('deleteComment', {'shared': sharedExperience.id, 'id': commentSharedExperience.id}) }}"><img
+                                                                        style="width: 5%;    float: right;"
+                                                                        src="http://files.softicons.com/download/application-icons/mac-os-apps-icons-4-by-hamza-saleem/png/512x512/Trash%20Full.png"/></a>
+                                                            <a href="{{ path('commentsharedexperience_editcomment', {'id':commentSharedExperience.id,'shared':sharedExperience.id }) }}">
+                                                                <img style="width: 5%;    float: right;"
+                                                                     src="https://png.icons8.com/metro/1600/edit.png"/></a></i>
+                                                    {% endif %}
+
 
                                                 </div>
                                                 <div class="comment-content">
@@ -464,6 +465,18 @@
 
                         </ul>
 
+                        <div class="col-md-3">
+
+                            <a class="btn btn-primary h3 pull-right"
+                               href="{{ path('commentsharedexperiences_new',{'id':sharedExperience.id}) }}"
+                               style="margin-bottom:10px">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New
+                            </a>
+                            <a class="btn dropdown-toggle pull-right h3" data-toggle="collapse" data-target="#filters">
+                                Filter
+                                <span class="caret"></span>
+                            </a>
+                        </div>
                     </div>
 
                 </form>

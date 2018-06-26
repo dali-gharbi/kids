@@ -4,6 +4,7 @@ imports:
     - { resource: services.yml }
     - { resource: "@AdminBundle/Resources/config/services.yml" }
     - { resource: "@FrontBundle/Resources/config/services.yml" }
+    - { resource: "@mobileBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -144,8 +145,6 @@ fos_user:
 #            locale:         "fr_FR"
 #            counter:        "right"
 #
-#    links:
-#        facebook:            "https://www.facebook.com/poweress/"
 #    theme:                  'default' # optional
 social_post:
     publish_on: [facebook, linkedin, twitter]         # List which Social networks you will be publishing to and configure your access to them as shown below

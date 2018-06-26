@@ -32,7 +32,7 @@ class SharedExperienceController extends Controller
 
         list($filterForm, $queryBuilder) = $this->filter($queryBuilder, $request);
         list($sharedExperiences, $pagerHtml) = $this->paginator($queryBuilder, $request);
-        
+
         $totalOfRecordsString = $this->getTotalOfRecordsString($queryBuilder, $request);
 
         return $this->render('@Admin/sharedexperience/index.html.twig', array(
@@ -45,9 +45,9 @@ class SharedExperienceController extends Controller
     }
 
     /**
-    * Create filter form and process filter request.
-    *
-    */
+     * Create filter form and process filter request.
+     *
+     */
     protected function filter($queryBuilder, Request $request)
     {
         $session = $request->getSession();
@@ -91,33 +91,31 @@ class SharedExperienceController extends Controller
     }
 
 
-
     /**
-    * Get results from paginator and get paginator view.
-    *
-    */
+     * Get results from paginator and get paginator view.
+     *
+     */
     protected function paginator($queryBuilder, Request $request)
     {
         //sorting
-        $sortCol = $queryBuilder->getRootAlias().'.'.$request->get('pcg_sort_col', 'id');
+        $sortCol = $queryBuilder->getRootAlias() . '.' . $request->get('pcg_sort_col', 'id');
         $queryBuilder->orderBy($sortCol, $request->get('pcg_sort_order', 'desc'));
         // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
-        $pagerfanta->setMaxPerPage($request->get('pcg_show' , 10));
+        $pagerfanta->setMaxPerPage($request->get('pcg_show', 10));
 
         try {
             $pagerfanta->setCurrentPage($request->get('pcg_page', 1));
         } catch (\Pagerfanta\Exception\OutOfRangeCurrentPageException $ex) {
             $pagerfanta->setCurrentPage(1);
         }
-        
+
         $entities = $pagerfanta->getCurrentPageResults();
 
         // Paginator - route generator
         $me = $this;
-        $routeGenerator = function($page) use ($me, $request)
-        {
+        $routeGenerator = function ($page) use ($me, $request) {
             $requestParams = $request->query->all();
             $requestParams['pcg_page'] = $page;
             return $me->generateUrl('sharedexperience', $requestParams);
@@ -133,13 +131,13 @@ class SharedExperienceController extends Controller
 
         return array($entities, $pagerHtml);
     }
-    
-    
-    
+
+
     /*
      * Calculates the total of records string
      */
-    protected function getTotalOfRecordsString($queryBuilder, $request) {
+    protected function getTotalOfRecordsString($queryBuilder, $request)
+    {
         $totalOfRecords = $queryBuilder->select('COUNT(e.id)')->getQuery()->getSingleScalarResult();
         $show = $request->get('pcg_show', 10);
         $page = $request->get('pcg_page', 1);
@@ -153,7 +151,6 @@ class SharedExperienceController extends Controller
         return "Showing $startRecord - $endRecord of $totalOfRecords Records.";
     }
 
-    
 
     /**
      * Displays a form to create a new SharedExperience entity.
@@ -163,29 +160,30 @@ class SharedExperienceController extends Controller
      */
     public function newAction(Request $request)
     {
-    
+
         $sharedExperience = new SharedExperience();
-        $form   = $this->createForm('AdminBundle\Form\SharedExperienceType', $sharedExperience);
+        $form = $this->createForm('AdminBundle\Form\SharedExperienceType', $sharedExperience);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $sharedExperience->setLikes(0);
+            $sharedExperience->setUser($this->getUser());
             $em->persist($sharedExperience);
             $em->flush();
-            
-                $editLink = $this->generateUrl('sharedexperience_new', array('id' => $sharedExperience->getId()));
-            $this->get('session')->getFlashBag()->add('success', "<a href='$editLink'>New sharedExperience was created successfully.</a>" );
-            
-            $nextAction=  $request->get('submit') == 'save' ? 'sharedexperiences' : 'sharedexperience_new';
+
+            $editLink = $this->generateUrl('sharedexperiences', array('id' => $sharedExperience->getId()));
+            $this->get('session')->getFlashBag()->add('success', "<a href='$editLink'>New sharedExperience was created successfully.</a>");
+
+            $nextAction = $request->get('submit') == 'save' ? 'sharedexperiences' : 'sharedexperiences_new';
             return $this->redirectToRoute($nextAction);
         }
-        return $this->render('@Admin/sharedexperience/new.html.twig' ,array(
-        'sharedExperience' => $sharedExperience,
-            'form'   => $form->createView(),
+        return $this->render('@Admin/sharedexperience/new.html.twig', array(
+            'sharedExperience' => $sharedExperience,
+            'form' => $form->createView(),
         ));
     }
 
-    
 
     /**
      * Finds and displays a SharedExperience entity.
@@ -201,8 +199,7 @@ class SharedExperienceController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-    
-    
+
 
     /**
      * Displays a form to edit an existing SharedExperience entity.
@@ -220,7 +217,7 @@ class SharedExperienceController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($sharedExperience);
             $em->flush();
-            
+
             $this->get('session')->getFlashBag()->add('success', 'Edited Successfully!');
             return $this->redirectToRoute('sharedexperiences_edit', array('id' => $sharedExperience->getId()));
         }
@@ -230,8 +227,7 @@ class SharedExperienceController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-    
-    
+
 
     /**
      * Deletes a SharedExperience entity.
@@ -241,7 +237,7 @@ class SharedExperienceController extends Controller
      */
     public function deleteAction(Request $request, SharedExperience $sharedExperience)
     {
-    
+
         $form = $this->createDeleteForm($sharedExperience);
         $form->handleRequest($request);
 
@@ -253,10 +249,10 @@ class SharedExperienceController extends Controller
         } else {
             $this->get('session')->getFlashBag()->add('error', 'Problem with deletion of the SharedExperience');
         }
-        
+
         return $this->redirectToRoute('sharedexperiences');
     }
-    
+
     /**
      * Creates a form to delete a SharedExperience entity.
      *
@@ -269,19 +265,19 @@ class SharedExperienceController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('sharedexperience_delete', array('id' => $sharedExperience->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
-    
+
     /**
      * Delete SharedExperience by id
      *
      * @Route("/delete/{id}", name="sharedexperiences_by_id_delete")
      * @Method("GET")
      */
-    public function deleteByIdAction(SharedExperience $sharedExperience){
+    public function deleteByIdAction(SharedExperience $sharedExperience)
+    {
         $em = $this->getDoctrine()->getManager();
-        
+
         try {
             $em->remove($sharedExperience);
             $em->flush();
@@ -293,13 +289,13 @@ class SharedExperienceController extends Controller
         return $this->redirect($this->generateUrl('sharedexperiences'));
 
     }
-    
+
 
     /**
-    * Bulk Action
-    * @Route("/bulk-action/", name="sharedexperiences_bulk_action")
-    * @Method("POST")
-    */
+     * Bulk Action
+     * @Route("/bulk-action/", name="sharedexperiences_bulk_action")
+     * @Method("POST")
+     */
     public function bulkAction(Request $request)
     {
         $ids = $request->get("ids", array());
@@ -325,6 +321,32 @@ class SharedExperienceController extends Controller
 
         return $this->redirect($this->generateUrl('sharedexperiences'));
     }
-    
 
+    /**
+     * Lists all SharedExperience entities.
+     *
+     * @Route("/{id}/{title}/search/sharedexperiences", name="searchSharedExperiences")
+     * @Method("GET")
+     */
+    public function searchAction(Request $request, $id, $title)
+    {
+        $em = $this->getDoctrine()->getManager();
+        if ($title == "")
+            $queryBuilder = $em->getRepository('AppBundle:SharedExperience')->createQueryBuilder('e')->andWhere('e.theme=' . $id);
+        else
+            $queryBuilder = $em->getRepository('AppBundle:SharedExperience')->createQueryBuilder('e')->andWhere('e.theme=' . $id)->andWhere("e.title like '%" . $title . "%'");
+
+        list($filterForm, $queryBuilder) = $this->filter($queryBuilder, $request);
+        list($sharedExperiences, $pagerHtml) = $this->paginator($queryBuilder, $request);
+
+        $totalOfRecordsString = $this->getTotalOfRecordsString($queryBuilder, $request);
+
+        return $this->render('@AdminBundle:sharedexperience:search.twig', array(
+            'sharedExperiences' => $sharedExperiences,
+            'pagerHtml' => $pagerHtml,
+            'filterForm' => $filterForm->createView(),
+            'totalOfRecordsString' => $totalOfRecordsString,
+            'id' => $id
+        ));
+    }
 }

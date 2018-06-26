@@ -38,6 +38,7 @@
                 background-attachment: fixed;
                 background-position: center;
             }
+
             /**
          * Oscuro: #283035
          * Azul: #03658c
@@ -317,72 +318,68 @@
 
         <div class="col-md-3 pull-left">
 
-            <!-- PAGE SIZE -->
-            <div class="pagination form-inline ">
-                <select class="form-control" onchange="window.location = this.value">
-                    <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '10'})) }}' {% if app.request.get('pcg_show') == 10 %} selected {% endif %}>
-                        10
-                    </option>
-                    <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '20'})) }}' {% if app.request.get('pcg_show') == 20 %} selected {% endif %}>
-                        20
-                    </option>
-                    <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '50'})) }}' {% if app.request.get('pcg_show') == 50 %} selected {% endif %}>
-                        50
-                    </option>
-                    <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '100'})) }}' {% if app.request.get('pcg_show') == 100 %} selected {% endif %}>
-                        100
-                    </option>
-                    <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '500'})) }}' {% if app.request.get('pcg_show') == 500 %} selected {% endif %}>
-                        500
-                    </option>
-                </select>
-            </div>
-            <!-- END PAGE SIZE -->
+            {# <!-- PAGE SIZE -->
+             <div class="pagination form-inline ">
+                 <select class="form-control" onchange="window.location = this.value">
+                     <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '10'})) }}' {% if app.request.get('pcg_show') == 10 %} selected {% endif %}>
+                         10
+                     </option>
+                     <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '20'})) }}' {% if app.request.get('pcg_show') == 20 %} selected {% endif %}>
+                         20
+                     </option>
+                     <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '50'})) }}' {% if app.request.get('pcg_show') == 50 %} selected {% endif %}>
+                         50
+                     </option>
+                     <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '100'})) }}' {% if app.request.get('pcg_show') == 100 %} selected {% endif %}>
+                         100
+                     </option>
+                     <option value='{{ path('sharedexperience',{'id':id}, app.request.query.all|merge({'pcg_show': '500'})) }}' {% if app.request.get('pcg_show') == 500 %} selected {% endif %}>
+                         500
+                     </option>
+                 </select>
+             </div>
+             <!-- END PAGE SIZE -->#}
 
         </div>
 
-
-        <div class="col-md-3">
-
-            <a class="btn btn-primary h3 pull-right" href="{{ path('sharedexperience_new',{'theme':id}) }}"
-               style="margin-bottom:10px">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New
-            </a>
-            <a class="btn dropdown-toggle pull-right h3" data-toggle="collapse" data-target="#filters">
-                Filter
-                <span class="caret"></span>
-            </a>
-        </div>
-
-
-        {#  <div class="col-md-12">
-              {%- if form_errors(filterForm) %}
-              <div class="alert alert-block alert-error fade in form-errors">
-                  {{ form_errors(filterForm) }}
-              </div>
-              {% endif %}
-          </div>#}
 
     </div> <!-- /#top -->
-
-
-    <div class="row">
-        <div class="col-md-12">
-            {% for type, flashMessages in app.session.flashbag.all() %}
-                {% for flashMessage in flashMessages %}
-                    <div class="alert alert-{{ type }}">
-                        {{ flashMessage|raw }}
-                    </div>
-                {% endfor %}
-            {% endfor %}
-        </div>
+    <div class="col-md-6 col-md-offset-3">
+        <br>
+        <br>
     </div>
 
-    {#<div class="col-md-6">
-        <p>Dans ce forum : Mamans, Papas, Parents, vous pouvez poser toutes vos questions ! Ce forum est la source d’une belle entraide entre les parents lecteurs de Cool Parents Make Happy Kids (et pas seulement d’ailleurs !) qui ont des réponses toujours bienveillantes et pertinentes. Je n’hésiterai pas non plus à répondre directement moi-même à certaines de vos questions en rédigeant un article ou en réalisant une vidéo sur le sujet (le délai de réponse sera alors un peu plus long évidemment…).
-        </p>
+    <div class="col-md-6 col-md-offset-3">
 
-    </div>#}
+        <input style="width: 400px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;color: limegreen;" type="text" placeholder="Search" id="inputSearch"/>
+        <span class="input-group-btn">
+
+            </span>
+        </a>
+        <p>Dans ce forum : Mamans, Papas, Parents, vous pouvez poser toutes vos questions ! </p>
+        <p>Ce forum est la source d’une belle entraide entre les parents lecteurs de Cool Parents Make Happy Kids (et
+            pas seulement d’ailleurs !) </p>
+        <p>qui ont des réponses toujours bienveillantes et pertinentes. Je n’hésiterai pas non plus à répondre
+            directement moi-même à certaines de vos questions en rédigeant
+        <p>
+            un article ou en réalisant une vidéo sur le sujet (le délai de réponse sera alors un peu plus long
+            évidemment…).
+        </p>
+        <a class="btn btn-primary h3 pull-right" href="{{ path('sharedexperience_new',{'theme':id}) }}"
+           style="margin-bottom:1px">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New
+        </a>
+    </div>
 
     <div class="col-md-6 col-md-offset-3">
 
@@ -400,7 +397,7 @@
                 });
             </script>
             <div class="col-md-12">
-                <input type="text" placeholder="Search" id="inputSearch"/>
+
                 <form method="POST" id="bulk_form" action="{{ path('sharedexperience_bulk_action') }} ">
                     <!-- Contenedor Principal -->
                     <div class="media" id="sharedExperience">

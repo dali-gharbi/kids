@@ -32,7 +32,7 @@ class CommentSharedExperienceController extends Controller
 
         list($filterForm, $queryBuilder) = $this->filter($queryBuilder, $request);
         list($commentSharedExperiences, $pagerHtml) = $this->paginator($queryBuilder, $request);
-        
+
         $totalOfRecordsString = $this->getTotalOfRecordsString($queryBuilder, $request);
 
         return $this->render('@Admin/commentsharedexperience/index.html.twig', array(
@@ -45,9 +45,9 @@ class CommentSharedExperienceController extends Controller
     }
 
     /**
-    * Create filter form and process filter request.
-    *
-    */
+     * Create filter form and process filter request.
+     *
+     */
     protected function filter($queryBuilder, Request $request)
     {
         $session = $request->getSession();
@@ -74,13 +74,13 @@ class CommentSharedExperienceController extends Controller
             // Get filter from session
             if ($session->has('CommentSharedExperienceControllerFilter')) {
                 $filterData = $session->get('CommentSharedExperienceControllerFilter');
-                
+
                 foreach ($filterData as $key => $filter) { //fix for entityFilterType that is loaded from session
                     if (is_object($filter)) {
                         $filterData[$key] = $queryBuilder->getEntityManager()->merge($filter);
                     }
                 }
-                
+
                 $filterForm = $this->createForm('AdminBundle\Form\CommentSharedExperienceFilterType', $filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
@@ -91,31 +91,30 @@ class CommentSharedExperienceController extends Controller
 
 
     /**
-    * Get results from paginator and get paginator view.
-    *
-    */
+     * Get results from paginator and get paginator view.
+     *
+     */
     protected function paginator($queryBuilder, Request $request)
     {
         //sorting
-        $sortCol = $queryBuilder->getRootAlias().'.'.$request->get('pcg_sort_col', 'id');
+        $sortCol = $queryBuilder->getRootAlias() . '.' . $request->get('pcg_sort_col', 'id');
         $queryBuilder->orderBy($sortCol, $request->get('pcg_sort_order', 'desc'));
         // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
-        $pagerfanta->setMaxPerPage($request->get('pcg_show' , 10));
+        $pagerfanta->setMaxPerPage($request->get('pcg_show', 10));
 
         try {
             $pagerfanta->setCurrentPage($request->get('pcg_page', 1));
         } catch (\Pagerfanta\Exception\OutOfRangeCurrentPageException $ex) {
             $pagerfanta->setCurrentPage(1);
         }
-        
+
         $entities = $pagerfanta->getCurrentPageResults();
 
         // Paginator - route generator
         $me = $this;
-        $routeGenerator = function($page) use ($me, $request)
-        {
+        $routeGenerator = function ($page) use ($me, $request) {
             $requestParams = $request->query->all();
             $requestParams['pcg_page'] = $page;
             return $me->generateUrl('commentsharedexperience', $requestParams);
@@ -131,13 +130,13 @@ class CommentSharedExperienceController extends Controller
 
         return array($entities, $pagerHtml);
     }
-    
-    
-    
+
+
     /*
      * Calculates the total of records string
      */
-    protected function getTotalOfRecordsString($queryBuilder, $request) {
+    protected function getTotalOfRecordsString($queryBuilder, $request)
+    {
         $totalOfRecords = $queryBuilder->select('COUNT(e.id)')->getQuery()->getSingleScalarResult();
         $show = $request->get('pcg_show', 10);
         $page = $request->get('pcg_page', 1);
@@ -155,28 +154,29 @@ class CommentSharedExperienceController extends Controller
     /**
      * Displays a form to create a new CommentSharedExperience entity.
      *
-     * @Route("/new/{id}", name="commentsharedexperience_new")
+     * @Route("/new", name="commentsharedexperience_new")
      * @Method({"GET", "POST"})
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function newAction(Request $request,$id)
+    public function newAction(Request $request)
     {
-    
+
         $commentSharedExperience = new CommentSharedExperience();
-        $form   = $this->createForm('AdminBundle\Form\CommentSharedExperienceType', $commentSharedExperience);
+        $form = $this->createForm('AdminBundle\Form\CommentSharedExperienceType', $commentSharedExperience);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $shared = $em->getRepository('AppBundle:SharedExperience')->find($id);
-            $commentSharedExperience->setSharedExperience($shared);
+            //$shared = $em->getRepository('AppBundle:SharedExperience')->find($id);
+            //$commentSharedExperience->setSharedExperience($shared);
             $commentSharedExperience->setUser($this->getUser());
+            $commentSharedExperience->setLikes(0);
             $em->persist($commentSharedExperience);
             $em->flush();
 
 
             $manager = $this->get('mgilet.notification');
-            $notif = $manager->createNotification($commentSharedExperience->getUser()->getUsername().' has commented a post');
+            $notif = $manager->createNotification($commentSharedExperience->getUser()->getUsername() . ' has commented a post');
             $notif->setMessage($commentSharedExperience->getSharedExperience()->getTitle());
             $notif->setLink('http://symfony.com/');
             // or the one-line method :
@@ -185,19 +185,19 @@ class CommentSharedExperienceController extends Controller
             // you can add a notification to a list of entities
             // the third parameter ``$flush`` allows you to directly flush the entities
             $manager->addNotification(array($this->getUser()), $notif, true);
-            
+
             $editLink = $this->generateUrl('commentsharedexperience_edit', array('id' => $commentSharedExperience->getId()));
-            $this->get('session')->getFlashBag()->add('success', "<a href='$editLink'>New commentSharedExperience was created successfully.</a>" );
-            
-            $nextAction=  $request->get('submit') == 'save' ? 'commentsharedexperience' : 'commentsharedexperience_new';
-            return $this->redirectToRoute($nextAction,['id'=>$id]);
+            $this->get('session')->getFlashBag()->add('success', "<a href='$editLink'>New commentSharedExperience was created successfully.</a>");
+
+            $nextAction = $request->get('submit') == 'save' ? 'commentsharedexperience' : 'commentsharedexperience_new';
+            return $this->redirectToRoute($nextAction);
         }
         return $this->render('@Admin/commentsharedexperience/new.html.twig', array(
             'commentSharedExperience' => $commentSharedExperience,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
-    
+
 
     /**
      * Finds and displays a CommentSharedExperience entity.
@@ -208,13 +208,12 @@ class CommentSharedExperienceController extends Controller
     public function showAction(CommentSharedExperience $commentSharedExperience)
     {
         $deleteForm = $this->createDeleteForm($commentSharedExperience);
-        return $this->render('commentsharedexperience/show.html.twig', array(
+        return $this->render('@Admin/commentsharedexperience/show.html.twig', array(
             'commentSharedExperience' => $commentSharedExperience,
             'delete_form' => $deleteForm->createView(),
         ));
     }
-    
-    
+
 
     /**
      * Displays a form to edit an existing CommentSharedExperience entity.
@@ -232,18 +231,17 @@ class CommentSharedExperienceController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($commentSharedExperience);
             $em->flush();
-            
+
             $this->get('session')->getFlashBag()->add('success', 'Edited Successfully!');
             return $this->redirectToRoute('commentsharedexperience_edit', array('id' => $commentSharedExperience->getId()));
         }
-        return $this->render('commentsharedexperience/edit.html.twig', array(
+        return $this->render('@Admin/commentsharedexperience/edit.html.twig', array(
             'commentSharedExperience' => $commentSharedExperience,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
-    
-    
+
 
     /**
      * Deletes a CommentSharedExperience entity.
@@ -253,7 +251,7 @@ class CommentSharedExperienceController extends Controller
      */
     public function deleteAction(Request $request, CommentSharedExperience $commentSharedExperience)
     {
-    
+
         $form = $this->createDeleteForm($commentSharedExperience);
         $form->handleRequest($request);
 
@@ -265,10 +263,10 @@ class CommentSharedExperienceController extends Controller
         } else {
             $this->get('session')->getFlashBag()->add('error', 'Problem with deletion of the CommentSharedExperience');
         }
-        
+
         return $this->redirectToRoute('commentsharedexperience');
     }
-    
+
     /**
      * Creates a form to delete a CommentSharedExperience entity.
      *
@@ -281,17 +279,17 @@ class CommentSharedExperienceController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('commentsharedexperience_delete', array('id' => $commentSharedExperience->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
-    
+
     /**
      * Delete CommentSharedExperience by id
      *
      * @Route("/delete/{id}", name="commentsharedexperience_by_id_delete")
      * @Method("GET")
      */
-    public function deleteByIdAction(CommentSharedExperience $commentSharedExperience){
+    public function deleteByIdAction(CommentSharedExperience $commentSharedExperience)
+    {
         $em = $this->getDoctrine()->getManager();
 
         try {
@@ -308,10 +306,10 @@ class CommentSharedExperienceController extends Controller
 
 
     /**
-    * Bulk Action
-    * @Route("/bulk-action/", name="commentsharedexperience_bulk_action")
-    * @Method("POST")
-    */
+     * Bulk Action
+     * @Route("/bulk-action/", name="commentsharedexperience_bulk_action")
+     * @Method("POST")
+     */
     public function bulkAction(Request $request)
     {
         $ids = $request->get("ids", array());
@@ -337,6 +335,6 @@ class CommentSharedExperienceController extends Controller
 
         return $this->redirect($this->generateUrl('commentsharedexperience'));
     }
-    
+
 
 }

@@ -17,23 +17,6 @@ class CommentSharedExperienceType extends AbstractType
     {
         $builder
             ->add('discription')
-            ->add('likes')
-            ->add('SharedExperience', EntityType::class, array(
-                'class' => 'AppBundle\Entity\SharedExperience',
-                'choice_label' => 'title',
-                'placeholder' => 'Please choose',
-                'empty_data' => null,
-                'required' => false
- 
-            )) 
-            ->add('user', EntityType::class, array(
-                'class' => 'AppBundle\Entity\User',
-                'choice_label' => 'id',
-                'placeholder' => 'Please choose',
-                'empty_data' => null,
-                'required' => false
- 
-            )) 
         ;
     }
     
