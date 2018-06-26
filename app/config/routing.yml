@@ -81,3 +81,5 @@ ancarebeca_fullcalendar:
 mgilet_notifications:
     resource: "@MgiletNotificationBundle/Controller/"
     prefix: /notifications
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

@@ -37,9 +37,50 @@
 
 </div>
 
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInputt");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 
+
+    <script>
+        function myFunction2() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInputt2");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 <!-- FILTERING -->
 <div class="col-md-6">
+    <input class="form-control" type="text" id="myInputt" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+    <input class="form-control" type="text" id="myInputt2" onkeyup="myFunction2()" placeholder="Search for price.." title="Type in an age">
     <form action="{{ path('pediatre') }}" method="get" >
 
         <div class="input-group h3">
@@ -94,16 +135,17 @@
 
         <div class="table-responsive col-md-12">
         <form method="POST" id="bulk_form" action="{{ path('pediatre_bulk_action') }} ">
-            <table class="table table-striped table-hover table-bordered" cellspacing="0" cellpadding="0">
+            <table id="myTable" class="table table-striped table-hover table-bordered" cellspacing="0" cellpadding="0">
                 <thead>
                     <tr>
                         <th width="20px"><input type="checkbox" class="check-all" onclick="toggleAll(this)"></th>
 
                 {% import "@PetkoparaCrudGenerator/macros/th_sortable.html.twig" as macros %}
-                            <th>{{macros.th_sortable('id',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'pediatre')}}</th>
+                            {# <th>{{macros.th_sortable('id',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'pediatre')}}</th>#}
                             <th>{{macros.th_sortable('name',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'pediatre')}}</th>
                             <th>{{macros.th_sortable('price',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'pediatre')}}</th>
                             <th>{{macros.th_sortable('tel',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'pediatre')}}</th>
+                        <th>{{macros.th_sortable('email',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'pediatre')}}</th>
 
                         <th>rue</th>
                             <th>speciality</th>
@@ -116,10 +158,11 @@
                     {% for pediatrician in pediatricians %}
                     <tr>
                         <td><input type="checkbox" name="ids[]" onclick='bulkSubmitBtnManage();' class="check-all" value="{{pediatrician.id}}"/></td>
-                        <td><a href="{{ path('pediatre_edit', { 'id': pediatrician.id }) }}">{{ pediatrician.id }}</a></td>
+                       {# <td><a href="{{ path('pediatre_edit', { 'id': pediatrician.id }) }}">{{ pediatrician.id }}</a></td>#}
                         <td>{{ pediatrician.name }}</td>
                         <td>{{ pediatrician.price }}</td>
                         <td>{{ pediatrician.tel }}</td>
+                        <td>{{ pediatrician.email }}</td>
                         <td>{{ pediatrician.address.rue }}</td>
                         {% if pediatrician.speciality %}
                         <td>{{ pediatrician.speciality.name }}</td>

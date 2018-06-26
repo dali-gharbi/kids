@@ -2,9 +2,6 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\Address;
-use AppBundle\Entity\Establishment;
-use AppBundle\Entity\Event;
 use AppBundle\Entity\Rating;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
@@ -13,7 +10,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadEventsData
+class LoadRatingData
     extends AbstractFixture
     implements ORMFixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
@@ -29,27 +26,35 @@ class LoadEventsData
      */
     public function load(ObjectManager $manager)
     {
-        $event = new Event();
-        $event->setName('3id él omm');
-        $event->setDescription('test test');
-        $event->setTel('24555666');
-        $adrs = new Address();
-        $adrs->setRue('test');
-        $adrs->setLongitude('10.180599');
-        $adrs->setLatitude('36.806020');
-        $adrs->setGovernorate('tunis');
-        $event->setDate(new \DateTime('2018-06-24 09:00:00'));
-        $event->setEndDate(new \DateTime('2018-06-26 17:00:00'));
-        $etab = new Establishment();
-        $etab->setName('test');
-        $etab->setDescription('testdesc');
-        $etab->setAddress($adrs);
-        $etab->setPhoto('http://ghmf.org/etablissement_image/etablissement01.jpg');
-        $rating = $manager->getRepository(Rating::class)->findOneBy(array('rate'=> 4));
-        $etab->setRating($rating);
-        $event->setEstablishment($etab);
-        //$pediatre->setRating(1);
-        $manager->persist($event);
+        $rating = new Rating();
+        $rating->setRate(0);
+        $rating->setDescription('Very bad');
+        $manager->persist($rating);
+
+        $rating1 = new Rating();
+        $rating1->setRate(1);
+        $rating1->setDescription('Bad');
+        $manager->persist($rating1);
+
+        $rating2 = new Rating();
+        $rating2->setRate(2);
+        $rating2->setDescription('Average');
+        $manager->persist($rating2);
+
+        $rating3 = new Rating();
+        $rating3->setRate(3);
+        $rating3->setDescription('Good');
+        $manager->persist($rating3);
+
+        $rating4 = new Rating();
+        $rating4->setRate(4);
+        $rating4->setDescription('Very good');
+        $manager->persist($rating4);
+
+        $rating5 = new Rating();
+        $rating5->setRate(5);
+        $rating5->setDescription('Excellent');
+        $manager->persist($rating5);
 
 
         $manager->flush();
@@ -70,7 +75,7 @@ class LoadEventsData
      */
     public function getOrder()
     {
-        return 7;
+        return 5;
     }
 
 }

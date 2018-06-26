@@ -20,12 +20,6 @@
 
 
 <div class="row">
-    <div class="col-md-12">
-        <div class="page-header">
-            <h2><a href="{{ path('AdminEvent') }}">Event</a></h2>
-        </div>
-    </div>       
-
 <!-- FILTERING -->
 <div class="col-md-12">
     <div  id="filters" class="collapse">
@@ -74,14 +68,54 @@
         </select>
     </div>
     <!-- END PAGE SIZE -->
-
 </div>
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInputt");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 
-<div class="col-md-6">
 
+    <script>
+        function myFunction2() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInputt2");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FILTERING -->
+    <div class="col-md-6">
+        <input  class="form-control" type="text" id="myInputt" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+        <input class="form-control" type="text" id="myInputt2" onkeyup="myFunction2()" placeholder="Search for descriptions.." title="Type in an age">
+    </div>
 
-</div>
-
+    <!-- END FILTERING -->
 <div class="col-md-3">
 
             <a class="btn btn-primary h3 pull-right" href="{{ path('AdminEvent_new') }}" style="margin-bottom:10px">
@@ -127,13 +161,13 @@
 
         <div class="table-responsive col-md-12">
         <form method="POST" id="bulk_form" action="{{ path('AdminEvent_bulk_action') }} ">
-            <table class="table table-striped table-hover table-bordered" cellspacing="0" cellpadding="0">
+            <table  id="myTable" class="table table-striped table-hover table-bordered" cellspacing="0" cellpadding="0">
                 <thead>
                     <tr>
                         <th width="20px"><input type="checkbox" class="check-all" onclick="toggleAll(this)"></th>
 
                 {% import "@PetkoparaCrudGenerator/macros/th_sortable.html.twig" as macros %}
-                            <th>{{macros.th_sortable('id',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>
+                          {#  <th>{{macros.th_sortable('id',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>#}
                             <th>{{macros.th_sortable('name',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>
                             <th>{{macros.th_sortable('description',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>
                         <th>{{macros.th_sortable('tel',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'AdminEvent')}}</th>
@@ -148,7 +182,7 @@
                     {% for event in events %}
                     <tr>
                         <td><input type="checkbox" name="ids[]" onclick='bulkSubmitBtnManage();' class="check-all" value="{{event.id}}"/></td>
-                        <td><a href="{{ path('AdminEvent_edit', { 'id': event.id }) }}">{{ event.id }}</a></td>
+                       {# <td><a href="{{ path('AdminEvent_edit', { 'id': event.id }) }}">{{ event.id }}</a></td>#}
                         <td>{{ event.name }}</td>
                         <td>{{ event.description }}</td>
                         <td>{{ event.tel }}</td>

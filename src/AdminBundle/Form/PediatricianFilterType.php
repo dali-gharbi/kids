@@ -18,6 +18,8 @@ class PediatricianFilterType extends AbstractType
                     'search_fields' => array( //optional, if it's empty it will search in the all entity columns
                         'id',
                         'name',
+                        'email',
+                        'tel',
                         'price',
                  ), 
                     ));

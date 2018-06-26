@@ -159,17 +159,17 @@
             </div>
         </div>
     </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{ asset('bundles/front/js/jquery-2.1.1.min.js')}}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ asset('bundles/front/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('bundles/front/js/jquery.prettyPhoto.js')}}"></script>
+    <script src="{{ asset('bundles/front/js/jquery.isotope.min.js')}}"></script>
+    <script src="{{ asset('bundles/front/js/wow.min.js')}}"></script>
+    <script src="{{ asset('bundles/front/js/functions.js')}}"></script>
 {% endblock %}
-
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="{{ asset('bundles/front/js/jquery-2.1.1.min.js')}}"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="{{ asset('bundles/front/js/bootstrap.min.js')}}"></script>
-<script src="{{ asset('bundles/front/js/jquery.prettyPhoto.js')}}"></script>
-<script src="{{ asset('bundles/front/js/jquery.isotope.min.js')}}"></script>
-<script src="{{ asset('bundles/front/js/wow.min.js')}}"></script>
-<script src="{{ asset('bundles/front/js/functions.js')}}"></script>
 
 </body>
 
